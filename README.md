@@ -9,3 +9,11 @@ last_row_as_string = last_row_as_string.replace('\n', ',')
 
 #Display the result
 print(last_row_as_string)
+
+
+
+
+
+df = pd.DataFrame(np.random.randn(10, 5),
+                  columns=['a', 'b', 'c', 'd', 'e'])
+df.to_csv(header=None, index=False).strip('\n').split('\n')
