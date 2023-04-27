@@ -1,0 +1,501 @@
+sentence,class
+May I kindly request you to specify your preferred language?,find_preferred_language
+"Could you inform me of your language of preference, please?",find_preferred_language
+Would you be so kind as to indicate your preferred language?,find_preferred_language
+I would appreciate it if you could share your language preference with me.,find_preferred_language
+Might I ask you to let me know which language you prefer?,find_preferred_language
+May I inquire as to which language you would like to use?,find_preferred_language
+Please tell me which language you would like to use.,find_preferred_language
+Could you kindly specify the language you would like to use?,find_preferred_language
+May I have the pleasure of knowing your language preference?,find_preferred_language
+Would you mind sharing your preferred language with me?,find_preferred_language
+I kindly ask you to indicate your language preference.,find_preferred_language
+May I respectfully request you to inform me of your preferred language?,find_preferred_language
+Could you please let me know which language you prefer?,find_preferred_language
+Would you be so kind as to share your language preference with me?,find_preferred_language
+I would be grateful if you could inform me of your preferred language.,find_preferred_language
+May I have the honor of knowing your language preference?,find_preferred_language
+Might I kindly ask you to specify your preferred language?,find_preferred_language
+Please inform me of your language preference.,find_preferred_language
+Could you tell me which language you prefer?,find_preferred_language
+Would you kindly indicate your preferred language?,find_preferred_language
+May I ask you to let me know your language preference?,find_preferred_language
+Can you please inform me of the language you prefer to use?,find_preferred_language
+Would you mind sharing with me your language preference?,find_preferred_language
+May I have the pleasure of knowing which language you would like to use?,find_preferred_language
+May I respectfully request you to specify your preferred language?,find_preferred_language
+Could you kindly inform me of your preferred language?,find_preferred_language
+Would you be so kind as to tell me your language preference?,find_preferred_language
+Please share with me the language you would like to use.,find_preferred_language
+May I ask you to indicate your preferred language?,find_preferred_language
+I kindly request that you specify your preferred language.,find_preferred_language
+Can you please tell me which language you would like to use?,find_preferred_language
+Would you kindly inform me of your language preference?,find_preferred_language
+May I know your preferred language?,find_preferred_language
+Could you kindly share your preferred language with me?,find_preferred_language
+May I have the pleasure of knowing which language you prefer?,find_preferred_language
+Can you please specify your preferred language?,find_preferred_language
+Would you be so kind as to inform me of your language preference?,find_preferred_language
+May I inquire as to your preferred language?,find_preferred_language
+Could you kindly indicate the language you prefer?,find_preferred_language
+May I respectfully request you to let me know your preferred language?,find_preferred_language
+Can you please tell me the language you would like to use?,find_preferred_language
+"Would you mind sharing your language preference with me, please?",find_preferred_language
+May I know the language you would like to use?,find_preferred_language
+Could you kindly specify the language you prefer to use?,find_preferred_language
+"May I ask you to inform me of your language preference, please?",find_preferred_language
+Would you be so kind as to share the language you would like to use?,find_preferred_language
+May I have the pleasure of knowing which language you would prefer to use?,find_preferred_language
+Can you please specify the language you would like to use?,find_preferred_language
+"Would you kindly indicate your preferred language, please?",find_preferred_language
+May I inquire as to the language you would prefer?,find_preferred_language
+"Could you kindly inform me which language you prefer, please?",find_preferred_language
+May I respectfully request you to share your language preference with me?,find_preferred_language
+"Can you please tell me your preferred language, please?",find_preferred_language
+"Would you mind letting me know your language preference, please?",find_preferred_language
+"May I know the language you prefer to use, please?",find_preferred_language
+"Could you kindly indicate the language you would like to use, please?",find_preferred_language
+"May I ask you to specify the language you would like to use, please?",find_preferred_language
+"Would you be so kind as to inform me of your language preference, please?",find_preferred_language
+"May I have the pleasure of knowing your preferred language, please?",find_preferred_language
+"Can you please specify your language of choice, please?",find_preferred_language
+"Would you kindly indicate the language you would prefer to use, please?",find_preferred_language
+"May I inquire as to your language of preference, please?",find_preferred_language
+"Could you kindly let me know your preferred language, please?",find_preferred_language
+"May I respectfully request you to share the language you would like to use, please?",find_preferred_language
+"Can you please inform me of the language you would like to use, please?",find_preferred_language
+"Would you mind telling me your language preference, please?",find_preferred_language
+"May I know the language you would like to use, please?",find_preferred_language
+"Could you kindly specify the language you prefer, please?",find_preferred_language
+"May I ask you to share your preferred language with me, please?",find_preferred_language
+"Would you be so kind as to indicate your language preference, please?",find_preferred_language
+"May I have the pleasure of knowing the language you prefer, please?",find_preferred_language
+"Can you please let me know which language you would like to use, please?",find_preferred_language
+"Would you kindly inform me of your language of choice, please?",find_preferred_language
+"May I inquire as to your preferred language of use, please?",find_preferred_language
+"Could you kindly share the language you would like to use, please?",find_preferred_language
+"May I respectfully request you to specify your preferred language of use, please?",find_preferred_language
+"Can you please indicate the language you prefer to use, please?",find_preferred_language
+"Would you mind telling me which language you would like to use, please?",find_preferred_language
+"May I know your language preference, please?",find_preferred_language
+"Could you kindly inform me of the language you prefer, please?",find_preferred_language
+"May I ask you to share your language of preference, please?",find_preferred_language
+"Would you be so kind as to specify the language you would like to use, please?",find_preferred_language
+"May I have the pleasure of knowing which language you prefer to communicate in, please?",find_preferred_language
+"Can you please indicate your language preference for communication, please?",find_preferred_language
+"Would you kindly inform me of your preferred language for communication, please?",find_preferred_language
+"May I inquire as to your language preference for communication, please?",find_preferred_language
+"Could you kindly share the language you prefer to communicate in, please?",find_preferred_language
+"May I respectfully request you to specify your language preference for communication, please?",find_preferred_language
+"Can you please tell me which language you would like to communicate in, please?",find_preferred_language
+"Would you mind sharing your language preference for communication, please?",find_preferred_language
+"May I know the language you would like to use for communication, please?",find_preferred_language
+"Could you kindly indicate the language you prefer for communication, please?",find_preferred_language
+"May I ask you to let me know your language preference for communication, please?",find_preferred_language
+"Would you be so kind as to specify your language of choice for communication, please?",find_preferred_language
+"May I have the pleasure of knowing your preferred language for communication, please?",find_preferred_language
+"Can you please inform me of your language preference for communication, please?",find_preferred_language
+"Would you kindly share your language of preference for communication, please?",find_preferred_language
+"May I inquire as to your language of choice for communication, please?",find_preferred_language
+"Could you kindly let me know the language you prefer to use for communication, please?",find_preferred_language
+"May I respectfully request you to indicate your language preference for communication, please?",find_preferred_language
+Could you kindly indicate your preferred language?,find_preferred_language
+I would appreciate it if you could let me know your preferred language.,find_preferred_language
+Please specify your preferred language.,find_preferred_language
+May I ask which language you prefer?,find_preferred_language
+Kindly inform me of your preferred language.,find_preferred_language
+It would be helpful to know your preferred language.,find_preferred_language
+Please indicate your language preference.,find_preferred_language
+I am curious about your preferred language.,find_preferred_language
+Would you kindly share your preferred language?,find_preferred_language
+May I inquire about your preferred language?,find_preferred_language
+Please let me know which language you prefer.,find_preferred_language
+Could you tell me your preferred language?,find_preferred_language
+Kindly state your preferred language.,find_preferred_language
+I would like to know your preferred language.,find_preferred_language
+"May I know your preferred language, please?",find_preferred_language
+It would be great if you could tell me your preferred language.,find_preferred_language
+Can you let me know your preferred language?,find_preferred_language
+Would you mind sharing your preferred language?,find_preferred_language
+May I ask what your preferred language is?,find_preferred_language
+Please tell me your preferred language.,find_preferred_language
+"What is your preferred language, if you don't mind my asking?",find_preferred_language
+I was wondering what your preferred language is.,find_preferred_language
+Could you please inform me of your preferred language?,find_preferred_language
+It would be helpful if you could let me know your preferred language.,find_preferred_language
+May I request you to share your preferred language?,find_preferred_language
+Would you kindly disclose your preferred language?,find_preferred_language
+Can you kindly reveal your preferred language?,find_preferred_language
+I would be grateful if you could tell me your preferred language.,find_preferred_language
+May I have the pleasure of knowing your preferred language?,find_preferred_language
+Please do tell me your preferred language.,find_preferred_language
+Could you kindly provide me with your preferred language?,find_preferred_language
+It would be appreciated if you could tell me your preferred language.,find_preferred_language
+I am interested in knowing your preferred language.,find_preferred_language
+May I know which language you prefer?,find_preferred_language
+"What language do you prefer, if I may ask?",find_preferred_language
+"Can you tell me your preferred language, please?",find_preferred_language
+Kindly share your preferred language with me.,find_preferred_language
+I would like to inquire about your preferred language.,find_preferred_language
+Would you mind letting me know your preferred language?,find_preferred_language
+"May I know what your preferred language is, please?",find_preferred_language
+Please let me know your language preference.,find_preferred_language
+"What is your preferred language, if you don't mind telling me?",find_preferred_language
+Could you please indicate your preferred language?,find_preferred_language
+I am eager to know your preferred language.,find_preferred_language
+May I kindly ask what your preferred language is?,find_preferred_language
+Can you share your preferred language with me?,find_preferred_language
+Would you be so kind as to tell me your preferred language?,find_preferred_language
+It would be most helpful if you could let me know your preferred language.,find_preferred_language
+I am interested to learn your preferred language.,find_preferred_language
+May I ask which language you would prefer?,find_preferred_language
+Can you kindly inform me of your preferred language?,find_preferred_language
+Would you be willing to tell me your preferred language?,find_preferred_language
+May I have the privilege of knowing your preferred language?,find_preferred_language
+"What is your preferred language, if I may know?",find_preferred_language
+Could you please specify your preferred language?,find_preferred_language
+I am curious to know your preferred language.,find_preferred_language
+May I know the language you prefer?,find_preferred_language
+Can you please share your preferred language with me?,find_preferred_language
+Kindly let me know your preferred language.,find_preferred_language
+Would you mind disclosing your preferred language?,find_preferred_language
+May I inquire what your preferred language is?,find_preferred_language
+Please state your preferred language.,find_preferred_language
+"What language do you prefer, if I may inquire?",find_preferred_language
+Can you tell me which language you prefer?,find_preferred_language
+May I know your preferred language?,find_preferred_language
+Kindly indicate your preferred language.,find_preferred_language
+May I ask what language you would like to use?,find_preferred_language
+Can you inform me about your language preference?,find_preferred_language
+I am interested in finding out your preferred language.,find_preferred_language
+Could you kindly state your preferred language for me?,find_preferred_language
+May I know which language you would like to use?,find_preferred_language
+Kindly share with me your preferred language.,find_preferred_language
+Would it be possible for you to let me know your preferred language?,find_preferred_language
+What language would you prefer to use?,find_preferred_language
+Can you kindly provide me with your preferred language?,find_preferred_language
+May I ask you to specify your preferred language?,find_preferred_language
+"Would you be so kind as to tell me your preferred language, please?",find_preferred_language
+It would be helpful for me to know your preferred language.,find_preferred_language
+I would like to know which language you prefer to use.,find_preferred_language
+Could you please share your preferred language with me?,find_preferred_language
+May I know the language that you would like to use?,find_preferred_language
+Kindly let me know which language you prefer.,find_preferred_language
+Would you mind informing me about your preferred language?,find_preferred_language
+"What language do you prefer to use, if I may ask?",find_preferred_language
+Can you please specify your language preference?,find_preferred_language
+May I have the pleasure of knowing your preferred language?,find_preferred_language
+Could you kindly inform me of your preferred language?,find_preferred_language
+Would you be willing to let me know your preferred language?,find_preferred_language
+"What language would you like to use, if you don't mind my asking?",find_preferred_language
+Can you tell me the language you prefer to use?,find_preferred_language
+May I ask about your language preference?,find_preferred_language
+Kindly indicate the language you would like to use.,find_preferred_language
+It would be great if you could let me know your preferred language.,find_preferred_language
+I am eager to find out your language preference.,find_preferred_language
+"May I know which language you prefer to use, please?",find_preferred_language
+Can you kindly share with me the language you prefer?,find_preferred_language
+Please state the language you would like to use.,find_preferred_language
+"What is your preferred language of use, if I may inquire?",find_preferred_language
+Could you please tell me the language you would like to use?,find_preferred_language
+I am curious to know which language you would prefer to use.,find_preferred_language
+Could you kindly inform me of your preferred language?,find_preferred_language
+"I'm curious, what language do you prefer?",find_preferred_language
+May I ask what language you prefer to use?,find_preferred_language
+"Could you let me know your language preference, please?",find_preferred_language
+What language do you prefer to communicate in?,find_preferred_language
+"Can you tell me your preferred language, please?",find_preferred_language
+"I'm wondering, what is your preferred language?",find_preferred_language
+Please share with me your preferred language.,find_preferred_language
+What language do you typically use?,find_preferred_language
+Can you specify your preferred language for me?,find_preferred_language
+"I would like to know your preferred language, if that's alright.",find_preferred_language
+Would you mind letting me know your preferred language?,find_preferred_language
+What is your language of choice?,find_preferred_language
+"Can you indicate your preferred language, please?",find_preferred_language
+May I inquire about your preferred language?,find_preferred_language
+"I'm curious, which language do you prefer to use?",find_preferred_language
+Can you please tell me your preferred language?,find_preferred_language
+Would you be willing to share your preferred language with me?,find_preferred_language
+What language are you most comfortable using?,find_preferred_language
+May I ask what language you prefer to communicate in?,find_preferred_language
+Can you kindly inform me of your language preference?,find_preferred_language
+What language do you prefer to speak?,find_preferred_language
+I would appreciate it if you could tell me your preferred language.,find_preferred_language
+"Can you share with me your preferred language, please?",find_preferred_language
+"Could you let me know the language you prefer, please?",find_preferred_language
+What is your language preference?,find_preferred_language
+May I know which language you prefer?,find_preferred_language
+Would you mind telling me your preferred language?,find_preferred_language
+What language do you feel most comfortable using?,find_preferred_language
+Can you please indicate your preferred language?,find_preferred_language
+I'm interested to know your preferred language.,find_preferred_language
+Can you kindly let me know what language you prefer?,find_preferred_language
+"What language do you prefer to communicate in, if I may ask?",find_preferred_language
+Please tell me your preferred language.,find_preferred_language
+Can you let me know what language you're most comfortable with?,find_preferred_language
+What is the language that you prefer to use?,find_preferred_language
+I would like to know what language you feel most comfortable using.,find_preferred_language
+"Could you inform me of your preferred language, please?",find_preferred_language
+What is your language of choice for communication?,find_preferred_language
+Would you be so kind as to let me know your preferred language?,find_preferred_language
+What language would you like me to use?,find_preferred_language
+Can you tell me what language you prefer to speak?,find_preferred_language
+I'm curious to know which language you prefer to use.,find_preferred_language
+Can you please tell me your preferred method of communication?,find_preferred_language
+What language do you typically use in your daily life?,find_preferred_language
+"May I know your preferred language, please?",find_preferred_language
+What is your preferred language for communication?,find_preferred_language
+Could you kindly share your language preference with me?,find_preferred_language
+"Can you inform me of your language preference, please?",find_preferred_language
+What is the language you would like me to use?,find_preferred_language
+Would you mind telling me your preferred language of communication?,find_preferred_language
+What language do you feel most at ease using?,find_preferred_language
+"Can you indicate the language you prefer, please?",find_preferred_language
+What language do you prefer to use in conversation?,find_preferred_language
+May I ask what language you prefer to speak in?,find_preferred_language
+Could you please let me know your language preference?,find_preferred_language
+What language would you like me to use to communicate with you?,find_preferred_language
+Can you inform me which language you prefer to speak?,find_preferred_language
+What language do you feel most comfortable communicating in?,find_preferred_language
+Would you kindly share your preferred language with me?,find_preferred_language
+Can you please specify your language preference?,find_preferred_language
+May I know the language that you prefer to use?,find_preferred_language
+What is your preferred method of communication?,find_preferred_language
+Could you kindly inform me of the language you prefer to communicate in?,find_preferred_language
+Can you indicate which language you would like me to use?,find_preferred_language
+What is the language you are most proficient in?,find_preferred_language
+May I ask what language you prefer to use for communication?,find_preferred_language
+Can you tell me which language you would like me to use to communicate with you?,find_preferred_language
+What language do you typically use for communication?,find_preferred_language
+Could you please share your preferred language with me?,find_preferred_language
+May I inquire about your language preference?,find_preferred_language
+What language do you prefer to use when communicating with others?,find_preferred_language
+Can you specify the language you would like me to use for communication?,find_preferred_language
+What language do you feel most comfortable conversing in?,find_preferred_language
+Would you mind letting me know the language you prefer to use?,find_preferred_language
+Can you inform me of the language you would like me to speak in?,find_preferred_language
+What is your preferred language for conversation?,find_preferred_language
+May I know which language you prefer to use for communication purposes?,find_preferred_language
+Could you kindly indicate your preferred language for communication?,find_preferred_language
+What language do you feel most at ease using when communicating with others?,find_preferred_language
+Can you tell me the language you prefer to use for communication?,find_preferred_language
+Would you kindly share the language you are most comfortable using?,find_preferred_language
+May I ask what language you would like me to use when communicating with you?,find_preferred_language
+What is your language preference for communication?,find_preferred_language
+Can you specify the language you would like to use for communication purposes?,find_preferred_language
+What language do you typically use when communicating with others?,find_preferred_language
+Could you kindly inform me of the language you prefer to speak in?,find_preferred_language
+May I inquire about the language you feel most comfortable using?,find_preferred_language
+What language do you feel most at ease speaking in?,find_preferred_language
+Can you indicate the language you prefer to use for conversation?,find_preferred_language
+What is your preferred language for speaking with others?,find_preferred_language
+Would you mind letting me know your preferred language for communication?,find_preferred_language
+Can you inform me of the language you feel most comfortable using?,find_preferred_language
+What language do you prefer to use when interacting with others?,find_preferred_language
+May I ask which language you feel most proficient in?,find_preferred_language
+What language do you typically use for communication with others?,find_preferred_language
+Can you specify the language you prefer to use when communicating?,find_preferred_language
+What is the language you feel most at ease using when communicating with others?,find_preferred_language
+Would you kindly share your language preference for communication?,find_preferred_language
+Can you tell me which language you would like me to use when communicating with you?,find_preferred_language
+Can you tell me which language you prefer?,find_preferred_language
+What language do you prefer to use?,find_preferred_language
+Could you specify your preferred language?,find_preferred_language
+I'd like to know your preferred language.,find_preferred_language
+Which language would you like to use?,find_preferred_language
+May I know what language you prefer?,find_preferred_language
+Would you mind sharing your preferred language with me?,find_preferred_language
+Can you let me know your language preference?,find_preferred_language
+Do you have a preferred language that you would like to use?,find_preferred_language
+What language do you usually prefer to use?,find_preferred_language
+I'm curious to know your preferred language.,find_preferred_language
+Could you kindly inform me of your preferred language?,find_preferred_language
+Which language do you feel most comfortable using?,find_preferred_language
+Can you tell me the language you prefer to communicate in?,find_preferred_language
+I'm interested to know your language preference.,find_preferred_language
+Can you let me know which language you'd like to use?,find_preferred_language
+May I ask what language you prefer?,find_preferred_language
+Which language do you usually communicate in?,find_preferred_language
+Can you share with me your preferred language?,find_preferred_language
+I'd appreciate it if you could let me know your preferred language.,find_preferred_language
+Would you kindly tell me your language preference?,find_preferred_language
+What language do you prefer to speak?,find_preferred_language
+Can you inform me of your preferred language?,find_preferred_language
+Which language do you feel most at ease using?,find_preferred_language
+May I know your preferred language?,find_preferred_language
+Can you specify your language preference for me?,find_preferred_language
+I'm curious about your language preference.,find_preferred_language
+Which language would you like to use for communication?,find_preferred_language
+Could you kindly share your preferred language with me?,find_preferred_language
+What language do you usually use for communication?,find_preferred_language
+Can you let me know which language you prefer to communicate in?,find_preferred_language
+May I ask what language you usually prefer to use?,find_preferred_language
+I'd like to know the language you feel most comfortable speaking.,find_preferred_language
+Would you mind telling me your preferred language?,find_preferred_language
+Can you tell me the language you would like to use?,find_preferred_language
+I'm interested in your language preference.,find_preferred_language
+Can you let me know your language of choice?,find_preferred_language
+Which language do you prefer to communicate in the most?,find_preferred_language
+What is your preferred language of communication?,find_preferred_language
+Can you inform me which language you prefer to use?,find_preferred_language
+Which language do you feel most confident speaking?,find_preferred_language
+May I know the language you usually use for communication?,find_preferred_language
+Can you share your preferred language with me?,find_preferred_language
+I'd appreciate it if you could specify your preferred language.,find_preferred_language
+Would you kindly inform me of your language preference?,find_preferred_language
+What language do you prefer to use for conversation?,find_preferred_language
+Can you tell me your language preference for communication?,find_preferred_language
+I'm curious about which language you prefer to use.,find_preferred_language
+Can you let me know your preferred language for communication?,find_preferred_language
+May I ask which language you feel most comfortable using?,find_preferred_language
+What language do you usually speak?,find_preferred_language
+Can you inform me about your preferred language?,find_preferred_language
+Which language do you prefer to use when communicating?,find_preferred_language
+What is your preferred language for communication?,find_preferred_language
+Can you tell me which language you feel most at ease speaking?,find_preferred_language
+I'm interested to know which language you prefer.,find_preferred_language
+Can you let me know your language preference for speaking?,find_preferred_language
+May I know the language you usually speak in?,find_preferred_language
+Can you share your preferred language for communication with me?,find_preferred_language
+I'd appreciate it if you could specify the language you prefer to use.,find_preferred_language
+Would you kindly inform me of your language of choice?,find_preferred_language
+What language do you usually use for conversation?,find_preferred_language
+Can you tell me your language preference for speaking?,find_preferred_language
+I'm curious about which language you feel most confident using.,find_preferred_language
+Can you specify the language you prefer to use for communication?,find_preferred_language
+Which language do you prefer to use when talking?,find_preferred_language
+What is your preferred language for speaking?,find_preferred_language
+Can you inform me which language you usually communicate in?,find_preferred_language
+May I know your preferred language for conversation?,find_preferred_language
+Can you share your language preference with me?,find_preferred_language
+I'd appreciate it if you could let me know the language you prefer to use for communication.,find_preferred_language
+Would you kindly tell me which language you feel most comfortable speaking?,find_preferred_language
+What language do you usually use for speaking?,find_preferred_language
+Can you inform me of your preferred language for conversation?,find_preferred_language
+Which language do you prefer to use when interacting with others?,find_preferred_language
+What is your preferred language for chatting?,find_preferred_language
+Can you tell me your preferred language for communication purposes?,find_preferred_language
+I'm interested in knowing which language you feel most at ease using.,find_preferred_language
+Can you let me know the language you usually speak in?,find_preferred_language
+May I ask what language you prefer to use for conversation?,find_preferred_language
+Can you share your preferred language for interacting with others?,find_preferred_language
+I'd appreciate it if you could specify your preferred language for communication.,find_preferred_language
+Would you kindly inform me of the language you prefer to use for talking?,find_preferred_language
+What language do you usually prefer to speak in?,find_preferred_language
+Can you inform me which language you feel most confident using?,find_preferred_language
+Which language do you prefer to use when conversing?,find_preferred_language
+What is your preferred language for exchanging ideas?,find_preferred_language
+Can you tell me your preferred language for conversing with others?,find_preferred_language
+I'm curious to know which language you feel most comfortable conversing in.,find_preferred_language
+Can you let me know your preferred language for talking?,find_preferred_language
+May I ask what language you usually use for interacting with others?,find_preferred_language
+Can you share your preferred language for exchanging information with others?,find_preferred_language
+I'd appreciate it if you could specify the language you usually use for communication.,find_preferred_language
+Would you kindly inform me of the language you prefer to use for interacting with others?,find_preferred_language
+What language do you usually use when communicating with others?,find_preferred_language
+Can you inform me which language you prefer to use for exchanging information?,find_preferred_language
+Which language do you prefer to use when communicating with colleagues?,find_preferred_language
+What is your preferred language for discussing ideas?,find_preferred_language
+Can you tell me your preferred language for communicating with others?,
+I'm interested in knowing your language preference for communication.,
+Can you please tell me what language you prefer?,find_preferred_language
+What is your language of choice?,find_preferred_language
+May I know which language you would like to use?,find_preferred_language
+I'd like to know your preferred language.,find_preferred_language
+Could you let me know which language you prefer?,find_preferred_language
+May I ask what language you would like to use?,find_preferred_language
+What language do you prefer to communicate in?,find_preferred_language
+Can you specify your language preference?,find_preferred_language
+I would like to know which language you are most comfortable with.,find_preferred_language
+Which language would you like to use?,find_preferred_language
+Could you inform me of your language preference?,find_preferred_language
+Please let me know your preferred language.,find_preferred_language
+May I inquire as to your preferred language?,find_preferred_language
+I need to know which language you prefer to use.,find_preferred_language
+Can you let me know the language you would like to use?,find_preferred_language
+May I know your language preference?,find_preferred_language
+What language do you feel most comfortable using?,find_preferred_language
+Could you tell me which language you prefer?,find_preferred_language
+Which language would you like to communicate in?,find_preferred_language
+May I ask what language you are most comfortable with?,find_preferred_language
+Can you specify which language you prefer to use?,find_preferred_language
+I'm trying to find out which language you prefer.,find_preferred_language
+Would you kindly inform me of your preferred language?,find_preferred_language
+Which language do you prefer to speak?,find_preferred_language
+May I know which language you would like to use?,find_preferred_language
+Can you please let me know what language you prefer?,find_preferred_language
+What language do you feel most proficient in?,find_preferred_language
+I'd like to know which language you prefer to use.,find_preferred_language
+Could you please specify your language preference?,find_preferred_language
+May I inquire about your preferred language?,find_preferred_language
+What language would you like to use for communication?,find_preferred_language
+Please tell me your preferred language.,find_preferred_language
+Can you let me know which language you feel most comfortable with?,find_preferred_language
+May I know the language you prefer to speak in?,find_preferred_language
+Could you please tell me what language you prefer?,find_preferred_language
+Which language do you prefer to use for conversation?,find_preferred_language
+I'm curious about which language you would like to use.,find_preferred_language
+Would you mind telling me which language you prefer?,find_preferred_language
+What language do you feel most at ease speaking?,find_preferred_language
+May I know which language you would like to communicate in?,find_preferred_language
+Could you kindly inform me of your preferred language?,find_preferred_language
+Which language do you prefer to use for correspondence?,find_preferred_language
+Can you please let me know your language of choice?,find_preferred_language
+I'd like to find out which language you prefer.,find_preferred_language
+May I ask which language you feel most proficient in?,find_preferred_language
+What language would you like to use for discussion?,find_preferred_language
+Please tell me the language you prefer.,find_preferred_language
+Can you specify the language you prefer to use?,find_preferred_language
+May I know which language you would like to converse in?,find_preferred_language
+Could you inform me of your preferred language for communication?,find_preferred_language
+What language are you most comfortable speaking in?,find_preferred_language
+Which language would you prefer to use for correspondence?,find_preferred_language
+May I ask which language you feel most confident speaking?,find_preferred_language
+Can you please let me know which language you are most comfortable with?,find_preferred_language
+What is your preferred language for communication?,find_preferred_language
+May I know which language you would like to use for interaction?,find_preferred_language
+Could you please tell me what language you prefer to speak?,find_preferred_language
+Which language do you feel most confident using?,find_preferred_language
+Please let me know your language preference for communication.,find_preferred_language
+Can you specify which language you feel most at ease speaking?,find_preferred_language
+May I ask which language you would like to use for conversation?,find_preferred_language
+What language would you prefer to use for correspondence?,find_preferred_language
+Could you inform me of your preferred language for conversation?,find_preferred_language
+Which language do you prefer to use for business communication?,find_preferred_language
+May I know your language preference for this conversation?,find_preferred_language
+Can you please let me know which language you feel most proficient in?,find_preferred_language
+What language would you like to use for this discussion?,find_preferred_language
+Could you kindly inform me of the language you prefer for correspondence?,find_preferred_language
+Which language do you feel most comfortable communicating in?,find_preferred_language
+Please tell me the language you prefer to use for this communication.,find_preferred_language
+Can you specify the language you feel most confident speaking for this interaction?,find_preferred_language
+May I ask which language you would like to use for this exchange?,find_preferred_language
+What is your preferred language for this conversation?,find_preferred_language
+May I know which language you feel most at ease using?,find_preferred_language
+Can you let me know your language preference for this chat?,find_preferred_language
+Which language would you prefer to use for this communication?,find_preferred_language
+Could you inform me of your preferred language for this discussion?,find_preferred_language
+What language do you feel most proficient in for this interaction?,find_preferred_language
+May I know which language you would like to use for this transaction?,find_preferred_language
+Can you please tell me which language you prefer to use for this conversation?,find_preferred_language
+Which language do you feel most comfortable using for this communication?,find_preferred_language
+Please specify your language preference for this interaction.,find_preferred_language
+May I ask what language you feel most confident speaking for this discussion?,find_preferred_language
+What language would you like to use for this correspondence?,find_preferred_language
+Can you kindly let me know your language of choice for this interaction?,find_preferred_language
+Which language do you prefer to use for this transaction?,find_preferred_language
+May I know the language you feel most proficient in for this conversation?,find_preferred_language
+Can you specify which language you feel most at ease speaking for this communication?,find_preferred_language
+What is your preferred language for this exchange?,find_preferred_language
+May I ask which language you would like to use for this dialogue?,find_preferred_language
+Which language do you feel most comfortable using for this discussion?,find_preferred_language
+Please inform me of your language preference for this communication.,find_preferred_language
+Can you let me know which language you feel most confident speaking for this interaction?,find_preferred_language
+May I know which language you would like to use for this correspondence?,find_preferred_language
+What language would you prefer to use for this conversation?,find_preferred_language
+Can you please specify your language preference for this transaction?,find_preferred_language
+Which language do you feel most proficient in for this dialogue?,find_preferred_language
+May I ask what language you feel most at ease speaking for this communication?,find_preferred_language
+Can you kindly tell me your preferred language for this exchange?,
+What language would you like to use for this interaction?,
