@@ -1,2 +1,1 @@
-unique_b = df['b'].unique()
-result = df.loc[(df['a'] == 1) & (df['b'].isin(unique_b)), :]
+Focusing on category is employee benefits because users will query what gives them benefit information
