@@ -1,1 +1,1 @@
-Stores ER (Entity-Relationship) diagrams that help describe relationships between objects in the database.
+lưu trữ thông tin về các hoạt động ETL (Extract, Transform, Load) trên cơ sở dữ liệu.
