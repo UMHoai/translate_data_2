@@ -1,3 +1,3 @@
-result = result.groupby(['score']).sum().reset_index()
-
-df_merged = df_merged.sort_values(['id_question', 'id', 'text'], ascending=[True, True, True])
+Vector database or vector technique should be a good solution for pronunciation rating
+Can we use vector database in speech recognition?
+Audio Classification
