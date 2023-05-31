@@ -1,3 +1,1 @@
-Vector database or vector technique should be a good solution for pronunciation rating
-Can we use vector database in speech recognition?
-Audio Classification
+https://drive.google.com/file/d/1KnYVZ7VMLNKvySklTPN32phteTxNSDRs/view?usp=sharing
