@@ -1,5 +1,6 @@
-test_sentence = "How to connect Python to MySQL?"
-prediction = predict(test_sentence)
-label_names = ['mysql', 'python', 'php']
-predicted_labels = [label_names[i] for i in range(len(label_names)) if prediction[0][i] == 1]
-print(predicted_labels)
+predicted_labels = []
+    for label in label_names:
+        label_model = clf_labelP_model[label]
+        label_prediction = label_model.predict(transformed_text)
+        predicted_labels.append(label_prediction.toarray()[0])
+    return np.array(predicted_labels)
