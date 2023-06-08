@@ -1,1 +1,1 @@
-value = value.replace('[', '').replace(']', '').replace("'", '')
+value = ";;".join(value)
