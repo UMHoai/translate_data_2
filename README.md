@@ -18,7 +18,7 @@ df_classes = pd.DataFrame({
 })
 
 # Tạo empty DataFrame để lưu kết quả
-df_result = pd.DataFrame(columns=['class_name', 'text', 'label'])
+df_result = pd.DataFrame(columns=['class_name', 'text'])
 
 # Lặp qua từng class trong df_classes
 for index, class_row in df_classes.iterrows():
@@ -30,18 +30,17 @@ for index, class_row in df_classes.iterrows():
     
     # Tạo một đoạn text bằng cách nối description với tất cả các câu trả lời và label
     text = f"{description} "
-    labels = []
     for question_number in range(1, 6):
         question_rows = filtered_rows[filtered_rows['question_number'] == question_number]
-        random_answer = random.choice(question_rows['answer'])
-        random_label = question_rows[question_rows['answer'] == random_answer]['label'].values[0]
-        text += f"{random_answer} "
-        labels.append(random_label)
+        answers = question_rows['answer'].tolist()
+        labels = question_rows['label'].tolist()
+        random_answer = random.choice(answers)
+        random_label = labels[answers.index(random_answer)]
+        text += f"{random_answer} ({random_label}), "
     
-    # Thêm đoạn text và label vào DataFrame kết quả
+    # Thêm đoạn text vào DataFrame kết quả
     temp_df = pd.DataFrame({'class_name': [class_name],
-                            'text': [text],
-                            'label': [', '.join(labels)]})
+                            'text': [text]})
     df_result = df_result.append(temp_df, ignore_index=True)
 
 # In ra kết quả
