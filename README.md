@@ -1,4 +1,5 @@
 import pandas as pd
+import random
 
 # Tạo DataFrame df_question_mapping
 df_question_mapping = pd.DataFrame({
@@ -17,7 +18,7 @@ df_classes = pd.DataFrame({
 })
 
 # Tạo empty DataFrame để lưu kết quả
-df_result = pd.DataFrame()
+df_result = pd.DataFrame(columns=['class_name', 'text', 'label'])
 
 # Lặp qua từng class trong df_classes
 for index, class_row in df_classes.iterrows():
@@ -27,30 +28,21 @@ for index, class_row in df_classes.iterrows():
     # Lấy các dòng trong df_question_mapping có question_number từ 1 đến 5
     filtered_rows = df_question_mapping[df_question_mapping['question_number'].between(1, 5)]
     
-    # Tạo một DataFrame chứa câu trả lời ngẫu nhiên từ filtered_rows
-    random_answers = filtered_rows.groupby('question_number')['answer'].apply(lambda x: x.sample(1)).reset_index(drop=True)
+    # Tạo một đoạn text bằng cách nối description với tất cả các câu trả lời và label
+    text = f"{description} "
+    labels = []
+    for question_number in range(1, 6):
+        question_rows = filtered_rows[filtered_rows['question_number'] == question_number]
+        random_answer = random.choice(question_rows['answer'])
+        random_label = question_rows[question_rows['answer'] == random_answer]['label'].values[0]
+        text += f"{random_answer} "
+        labels.append(random_label)
     
-    # Tạo một DataFrame chứa label từ filtered_rows
-    labels = filtered_rows.groupby('question_number')['label'].first().reset_index(drop=True)
-    
-    # Kết hợp các DataFrame lại với nhau
-    temp_df = pd.concat([random_answers, labels], axis=1)
-    
-    # Đặt tên cột
-    temp_df.columns = ['answer', 'label']
-    
-    # Thêm cột description và class_name
-    temp_df['description'] = description
-    temp_df['class_name'] = class_name
-    
-    # Nối DataFrame tạm thời vào df_result
-    df_result = pd.concat([df_result, temp_df])
-
-# Sắp xếp lại các cột trong df_result
-df_result = df_result[['class_name', 'description', 'answer', 'label']]
-
-# Reset index của df_result
-df_result = df_result.reset_index(drop=True)
+    # Thêm đoạn text và label vào DataFrame kết quả
+    temp_df = pd.DataFrame({'class_name': [class_name],
+                            'text': [text],
+                            'label': [', '.join(labels)]})
+    df_result = df_result.append(temp_df, ignore_index=True)
 
 # In ra kết quả
 print(df_result)
