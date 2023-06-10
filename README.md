@@ -45,3 +45,8 @@ for index, class_row in df_classes.iterrows():
 
 # In ra kết quả
 print(df_result)
+
+
+
+    valid_question_numbers = [1, 2, 5]
+    filtered_rows = df_question_mapping[df_question_mapping['question_number'].isin(valid_question_numbers)]
