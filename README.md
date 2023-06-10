@@ -1,5 +1,4 @@
 import pandas as pd
-import random
 
 # Tạo DataFrame df_question_mapping
 df_question_mapping = pd.DataFrame({
@@ -28,22 +27,30 @@ for index, class_row in df_classes.iterrows():
     # Lấy các dòng trong df_question_mapping có question_number từ 1 đến 5
     filtered_rows = df_question_mapping[df_question_mapping['question_number'].between(1, 5)]
     
-    # Tạo một Series chứa câu trả lời ngẫu nhiên từ filtered_rows
-    random_answers = filtered_rows.groupby('question_number')['answer'].apply(lambda x: random.choice(x))
+    # Tạo một DataFrame chứa câu trả lời ngẫu nhiên từ filtered_rows
+    random_answers = filtered_rows.groupby('question_number')['answer'].apply(lambda x: x.sample(1)).reset_index(drop=True)
     
-    # Tạo một Series chứa label từ filtered_rows
-    labels = filtered_rows.groupby('question_number')['label'].first()
+    # Tạo một DataFrame chứa label từ filtered_rows
+    labels = filtered_rows.groupby('question_number')['label'].first().reset_index(drop=True)
     
-    # Tạo DataFrame tạm thời từ các Series trên
-    temp_df = pd.DataFrame({'description': [description],
-                            'answer': random_answers.values,
-                            'label': labels.values})
+    # Kết hợp các DataFrame lại với nhau
+    temp_df = pd.concat([random_answers, labels], axis=1)
     
-    # Tạo cột class_name trong DataFrame tạm thời
+    # Đặt tên cột
+    temp_df.columns = ['answer', 'label']
+    
+    # Thêm cột description và class_name
+    temp_df['description'] = description
     temp_df['class_name'] = class_name
     
     # Nối DataFrame tạm thời vào df_result
     df_result = pd.concat([df_result, temp_df])
+
+# Sắp xếp lại các cột trong df_result
+df_result = df_result[['class_name', 'description', 'answer', 'label']]
+
+# Reset index của df_result
+df_result = df_result.reset_index(drop=True)
 
 # In ra kết quả
 print(df_result)
