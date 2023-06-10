@@ -48,5 +48,6 @@ print(df_result)
 
 
 
-    valid_question_numbers = [1, 2, 5]
+    excluded_question_numbers = [3, 4]
+    valid_question_numbers = [number for number in range(1, 6) if number not in excluded_question_numbers]
     filtered_rows = df_question_mapping[df_question_mapping['question_number'].isin(valid_question_numbers)]
