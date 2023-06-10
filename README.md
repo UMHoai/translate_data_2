@@ -1,28 +1,42 @@
-# Tạo DataFrame mới để chứa dữ liệu tạo ra
-df_generated_data = pd.DataFrame(columns=['class_name', 'description', 'question_number', 'answer', 'label'])
+import pandas as pd
+import random
 
-# Generate dữ liệu cho từng class
+# Tạo DataFrame df_question_mapping
+df_question_mapping = pd.DataFrame({
+    'question_number': [1, 2, 2, 3, 3, 3, 4, 4, 4],  # Số dòng ví dụ
+    'answer': ['Answer1', 'Answer2', 'Answer3', 'Answer4', 'Answer5', 'Answer6', 'Answer7', 'Answer8', 'Answer9'],  # Câu trả lời ví dụ
+    'label': ['Label1', 'Label2', 'Label3', 'Label4', 'Label5', 'Label6', 'Label7', 'Label8', 'Label9']  # Label ví dụ
+})
+
+# Tạo DataFrame df_classes
+df_classes = pd.DataFrame({
+    'class_name': ['Class1', 'Class2', 'Class3', 'Class4', 'Class5'],  # Tên lớp
+    'description': ['Description1', 'Description2', 'Description3', 'Description4', 'Description5']  # Mô tả lớp
+})
+
+# Tạo DataFrame mới để lưu tập dữ liệu
+df_data = pd.DataFrame(columns=['class_name', 'description', 'answer', 'label'])
+
+# Số question_number tối đa
+max_question_number = 17
+
+# Duyệt qua từng lớp
 for _, class_row in df_classes.iterrows():
     class_name = class_row['class_name']
     description = class_row['description']
     
-    # Lấy các câu trả lời tương ứng với class từ df_question_mapping
-    matching_answers = df_question_mapping[df_question_mapping['label'] == class_name]['answer']
-    
-    # Lấy ngẫu nhiên một số câu trả lời
-    random_answers = random.sample(list(matching_answers), random.randint(1, 17))
-    
-    # Tạo DataFrame mới chứa dữ liệu cho class hiện tại
-    df_class_data = pd.DataFrame({
-        'class_name': [class_name] * len(random_answers),
-        'description': [description] * len(random_answers),
-        'question_number': df_question_mapping['question_number'],
-        'answer': random_answers,
-        'label': [class_name] * len(random_answers)
-    })
-    
-    # Gộp DataFrame mới vào df_generated_data
-    df_generated_data = pd.concat([df_generated_data, df_class_data], ignore_index=True)
+    # Duyệt qua các question_number từ 1 đến max_question_number
+    for question_number in range(1, max_question_number + 1):
+        # Lọc các câu trả lời và nhãn tương ứng với question_number
+        filtered_rows = df_question_mapping[df_question_mapping['question_number'] == question_number]
+        
+        # Lấy ngẫu nhiên một câu trả lời và nhãn từ filtered_rows
+        random_row = random.choice(filtered_rows.index)
+        answer = df_question_mapping.loc[random_row, 'answer']
+        label = df_question_mapping.loc[random_row, 'label']
+        
+        # Thêm dòng mới vào df_data
+        df_data = df_data.append({'class_name': class_name, 'description': description, 'answer': answer, 'label': label}, ignore_index=True)
 
-# Hiển thị kết quả
-print(df_generated_data)
+# In ra tập dữ liệu đã tạo
+print(df_data)
