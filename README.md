@@ -1,11 +1,8 @@
-import csv
 import random
+import os
 
-# Đường dẫn và tên file CSV
-csv_file = "data.csv"
-
-# Tên các cột trong file CSV
-column_names = ['class', 'description', 'assessment_text', 'associate_member']
+# Đường dẫn thư mục để lưu các file txt
+directory = "data_directory"
 
 # Số lượng bản ghi muốn tạo
 number_of_records = 100
@@ -39,24 +36,19 @@ def generate_assessment_text(class_row, filtered_rows, start_question_random):
 
     return class_name, class_description, text
 
-# Tạo các file txt
-with open(csv_file, 'w', newline='') as file:
-    writer = csv.DictWriter(file, fieldnames=column_names)
-    writer.writeheader()
+# Tạo thư mục để lưu các file txt
+os.makedirs(directory, exist_ok=True)
 
-    associate_member_id = 1001
+# Tạo các file txt cho mỗi associate_member_id
+for associate_member_id in range(1, 3):
+    file_name = f"{directory}/data_{associate_member_id}.txt"
 
-    for index, class_row in tqdm(df_classes.iterrows()):
-        class_name, class_description, assessment_text = generate_assessment_text(class_row, df_question_mapping, start_question_random)
+    with open(file_name, 'w') as file:
+        for index, class_row in tqdm(df_classes.iterrows()):
+            class_name, class_description, assessment_text = generate_assessment_text(class_row, df_question_mapping, start_question_random)
 
-        for _ in range(number_of_records):
-            writer.writerow({
-                'class': class_name,
-                'description': class_description,
-                'assessment_text': assessment_text,
-                'associate_member': associate_member_id
-            })
-            
-            # Thêm một associate_member_id mới
-            if _ == number_of_records // 2 - 1:
-                associate_member_id += 1
+            for _ in range(number_of_records):
+                file.write(f"associate_member_id: {associate_member_id}\n")
+                file.write(f"class: {class_name}\n")
+                file.write(f"description: {class_description}\n")
+                file.write(f"assessment_text: {assessment_text}\n\n")
