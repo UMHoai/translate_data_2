@@ -5,7 +5,7 @@ import random
 csv_file = "data.csv"
 
 # Tên các cột trong file CSV
-column_names = ['class', 'description', 'assessment_text']
+column_names = ['class', 'description', 'assessment_text', 'associate_member']
 
 # Số lượng bản ghi muốn tạo
 number_of_records = 100
@@ -44,6 +44,8 @@ with open(csv_file, 'w', newline='') as file:
     writer = csv.DictWriter(file, fieldnames=column_names)
     writer.writeheader()
 
+    associate_member_id = 1001
+
     for index, class_row in tqdm(df_classes.iterrows()):
         class_name, class_description, assessment_text = generate_assessment_text(class_row, df_question_mapping, start_question_random)
 
@@ -51,5 +53,10 @@ with open(csv_file, 'w', newline='') as file:
             writer.writerow({
                 'class': class_name,
                 'description': class_description,
-                'assessment_text': assessment_text
+                'assessment_text': assessment_text,
+                'associate_member': associate_member_id
             })
+            
+            # Thêm một associate_member_id mới
+            if _ == number_of_records // 2 - 1:
+                associate_member_id += 1
