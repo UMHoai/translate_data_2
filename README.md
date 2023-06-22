@@ -13,27 +13,20 @@ with open(csv_file, 'w', newline='') as file:
 
     for file in text_file:
         if "Assessment" in file:
-            df = pd.read_csv(file, delimiter="|")
-            df = df.dropna(axis=0)
-            description = ""
-            lst = []
+            with open(file, 'r') as assessment_file:
+                lines = assessment_file.readlines()
+                member_ids = []
+                for line in lines:
+                    if "member id" in line.lower():
+                        member_id = line.split(":")[-1].strip()
+                        member_ids.append(member_id)
+                member_ids = list(set(member_ids))  # Remove duplicates
 
-            for idx, row in df.iterrows():
-                question_number, answer = row["question_id"], row["text"]
-                answers = answer.split(",\\")
-                selected_label = []
+                df_filtered = df[df['associabled_menber'].isin(member_ids)]
+                df_filtered = df_filtered[df_filtered['question_id'].between(1, 17)]  # Filter questions from 1 to 17
+                df_filtered = df_filtered.sort_values(by='processing_order')
 
-                for ans in answers:
-                    result = ans.lower().replace("\\", "").replace("\"", "")
-                    condition = (df_question_mapping.question_number == question_number) & (df_question_mapping.answer.str.lower() == result)
-                    selected_label.append(str(df_question_mapping.loc[condition, 'label']))
+                descriptions = ' '.join(df_filtered['text'])
 
-                extracted_label = [text.split('   ')[1].split('\n')[0] for text in selected_label]
-                lst.append(extracted_label)
-
-            result = [' '.join(arr) for arr in lst]
-            result.sort(key=lambda x: df_question_mapping.loc[df_question_mapping['label'] == x, 'priority'].values[0], reverse=True)
-            descriptions = ' '.join(result)
-
-            # Write the description to the CSV file
-            writer.writerow({'timestamp': '', 'source': '', 'description': descriptions})
+                # Write the description to the CSV file
+                writer.writerow({'timestamp': '', 'source': '', 'description': descriptions})
