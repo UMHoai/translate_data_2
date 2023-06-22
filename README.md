@@ -4,29 +4,26 @@ import pandas as pd
 csv_file = ""
 column_names = ['timestamp', 'source', 'description']
 
-# Read the question mapping dataframe
-df_question_mapping = pd.read_csv("df_question_mapping.csv")  # Adjust the filename as per your actual file
-
 with open(csv_file, 'w', newline='') as file:
     writer = csv.DictWriter(file, fieldnames=column_names)
     writer.writeheader()
 
-    for file in text_file:
-        if "Assessment" in file:
-            with open(file, 'r') as assessment_file:
-                lines = assessment_file.readlines()
-                member_ids = []
-                for line in lines:
-                    if "member id" in line.lower():
-                        member_id = line.split(":")[-1].strip()
-                        member_ids.append(member_id)
-                member_ids = list(set(member_ids))  # Remove duplicates
+    for file_name in text_file:
+        if "Assessment" in file_name:
+            df = pd.read_csv(file_name, delimiter="|").dropna(axis=0)
+            df_question_mapping['answer'] = df_question_mapping['answer'].str.lower()
+            
+            def extract_labels(row):
+                question_number, answer = row["question_id"], row["text"]
+                answers = answer.split(",\\")
+                result = [ans.lower().replace("\\", "").replace("\"", "") for ans in answers]
+                condition = (df_question_mapping['question_number'] == question_number) & (df_question_mapping['answer'].isin(result))
+                selected_labels = df_question_mapping.loc[condition, 'label'].astype(str)
+                extracted_labels = selected_labels.str.split('   ').str[1].str.split('\n').str[0]
+                return ' '.join(extracted_labels)
 
-                df_filtered = df[df['associabled_menber'].isin(member_ids)]
-                df_filtered = df_filtered[df_filtered['question_id'].between(1, 17)]  # Filter questions from 1 to 17
-                df_filtered = df_filtered.sort_values(by='processing_order')
+            df['description'] = df.apply(extract_labels, axis=1)
+            descriptions = df['description'].str.cat(sep=' ')
 
-                descriptions = ' '.join(df_filtered['text'])
-
-                # Write the description to the CSV file
-                writer.writerow({'timestamp': '', 'source': '', 'description': descriptions})
+            # Write the description to the CSV file
+            writer.writerow({'timestamp': '', 'source': '', 'description': descriptions})
