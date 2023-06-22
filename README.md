@@ -1,26 +1,39 @@
+import csv
 import pandas as pd
 
-# Tạo dataframe df_class_config
-class_config_data = {'question_number': [1, 1, 2, 2, 3, 3, 4, 4, 5, 5],
-                     'answer': ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j'],
-                     'label': ['Label1', 'Label2', 'Label3', 'Label4', 'Label5', 'Label6', 'Label7', 'Label8', 'Label9', 'Label10'],
-                     'priority': [1, 1, 2, 2, 3, 3, 4, 4, 5, 5]}
-df_class_config = pd.DataFrame(class_config_data)
+csv_file = ""
+column_names = ['timestamp', 'source', 'description']
 
-# Tạo dataframe df_member_answer
-member_answer_data = {'member_id': ['Member1', 'Member1', 'Member2', 'Member2', 'Member3', 'Member3'],
-                      'question_id': [1, 2, 3, 4, 5, 1],
-                      'answer': ['a', 'd', 'e', 'h', 'i', 'b']}
-df_member_answer = pd.DataFrame(member_answer_data)
+# Read the question mapping dataframe
+df_question_mapping = pd.read_csv("df_question_mapping.csv")  # Adjust the filename as per your actual file
 
-# Gộp thông tin với df_member_answer
-merged_data = pd.merge(df_member_answer, df_class_config, left_on=['question_id', 'answer'], right_on=['question_number', 'answer'], how='left')
+with open(csv_file, 'w', newline='') as file:
+    writer = csv.DictWriter(file, fieldnames=column_names)
+    writer.writeheader()
 
-# Sắp xếp theo mức độ ưu tiên giảm dần
-merged_data.sort_values(by='priority', ascending=False, inplace=True)
+    for file in text_file:
+        if "Assessment" in file:
+            df = pd.read_csv(file, delimiter="|")
+            df = df.dropna(axis=0)
+            description = ""
+            lst = []
 
-# Tạo đoạn text theo từng member_id
-grouped_data = merged_data.groupby('member_id')['label'].apply(lambda x: ' '.join(x)).reset_index()
+            for idx, row in df.iterrows():
+                question_number, answer = row["question_id"], row["text"]
+                answers = answer.split(",\\")
+                selected_label = []
 
-# In ra kết quả
-print(grouped_data)
+                for ans in answers:
+                    result = ans.lower().replace("\\", "").replace("\"", "")
+                    condition = (df_question_mapping.question_number == question_number) & (df_question_mapping.answer.str.lower() == result)
+                    selected_label.append(str(df_question_mapping.loc[condition, 'label']))
+
+                extracted_label = [text.split('   ')[1].split('\n')[0] for text in selected_label]
+                lst.append(extracted_label)
+
+            result = [' '.join(arr) for arr in lst]
+            result.sort(key=lambda x: df_question_mapping.loc[df_question_mapping['label'] == x, 'priority'].values[0], reverse=True)
+            descriptions = ' '.join(result)
+
+            # Write the description to the CSV file
+            writer.writerow({'timestamp': '', 'source': '', 'description': descriptions})
