@@ -79,4 +79,21 @@ with open(csv_file, 'w', newline='') as file:
                     except IndexError:
                         extracted_labels.append(text)
 
-                result.append(extracted_labels
+                result.append(extracted_labels)
+
+            descriptions = []
+            for arr in result:
+                unique_labels = set(arr)  # Loại bỏ các nhãn trùng lặp
+                label_string = '-'.join(unique_labels)  # Nối các nhãn thành một từ
+                descriptions.append(label_string)
+
+            descriptions = ' '.join(descriptions).strip()
+
+            # Print the answer text
+            print(descriptions)
+
+            writer.writerow({
+                'timestamp': '',
+                'source': file_name,
+                'description': descriptions
+            })
