@@ -1,13 +1,15 @@
-import tarfile
 
-# Đường dẫn đến tệp tar
-tar_file_path = "path/to/your/file.tar"
+                # Join the extracted labels into a single string
+                joined_labels = '-'.join(extracted_labels)
 
-# Tạo một đối tượng tarfile
-tar = tarfile.open(tar_file_path)
+                # Store the joined labels in the answers dictionary
+                if question_number in answers_dict:
+                    answers_dict[question_number].append(joined_labels)
+                else:
+                    answers_dict[question_number] = [joined_labels]
 
-# Giải nén tất cả các tệp trong tệp tar
-tar.extractall()
-
-# Đóng tệp tar
-tar.close()
+            # Process the answers dictionary to create the final descriptions
+            descriptions = []
+            for question_number in sorted(answers_dict.keys()):
+                joined_answers = '-'.join(answers_dict[question_number])
+                descriptions.append(joined_answers)
