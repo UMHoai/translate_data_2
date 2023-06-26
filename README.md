@@ -36,10 +36,18 @@ with open(csv_file, 'w', newline='') as file:
             df_filtered = df_filtered.sort_values('processing_order')
 
             result = []
+            previous_question_number = None
+            current_answers = []
+
             for _, row in df_filtered.iterrows():
                 question_number, answer = row["question_id"], row["text"]
                 answers = answer.split(",\\")
                 selected_label = []
+
+                if question_number != previous_question_number and previous_question_number is not None:
+                    # Nối các answer và thêm vào selected_label
+                    selected_label.append('-'.join(current_answers))
+                    current_answers = []  # Reset danh sách current_answers
 
                 for ans in answers:
                     if ans == "no-answers":
@@ -51,10 +59,17 @@ with open(csv_file, 'w', newline='') as file:
                         question_row = df_question_mapping[df_question_mapping['question_number'] == question_number]
 
                         if question_row.loc[condition].empty:
-                            label = question_row.loc[question_row['label'].str.contains(result), 'label'].values[0]
-                            selected_label.append(f"{label}-{result.replace(' ', '-')}")
+                            if question_number == 1:
+                                selected_label.append("physical-problem-" + result.replace(" ", "-"))
+                            if question_number == 5:
+                                selected_label.append("mental-problem-" + result.replace(" ", "-"))
                         else:
                             selected_label.append(str(question_row.loc[condition, 'label']))
+
+                    # Thêm answer vào danh sách current_answers
+                    current_answers.append(result)
+
+                previous_question_number = question_number
 
                 extracted_labels = []
                 for text in selected_label:
@@ -64,21 +79,4 @@ with open(csv_file, 'w', newline='') as file:
                     except IndexError:
                         extracted_labels.append(text)
 
-                result.append(extracted_labels)
-
-            descriptions = []
-            for arr in result:
-                unique_labels = set(arr)  # Loại bỏ các nhãn trùng lặp
-                label_string = '-'.join(unique_labels)  # Nối các nhãn thành một từ
-                descriptions.append(label_string)
-
-            descriptions = ' '.join(descriptions).strip()
-
-            # Print the answer text
-            print(descriptions)
-
-            writer.writerow({
-                'timestamp': '',
-                'source': file_name,
-                'description': descriptions
-            })
+                result.append(extracted_labels
