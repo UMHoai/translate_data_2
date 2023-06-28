@@ -26,8 +26,11 @@ def map_answers_to_labels(answers, columns):
                 labels.append(question_category + '-' + answer)
     return labels
 
+# Exclude the 'associated_member' column from columns
+columns = df.columns[df.columns != 'associated_member']
+
 # Apply mapping function to each row
-df['labels'] = df.apply(lambda row: map_answers_to_labels(row[1:], df.columns[1:]), axis=1)
+df['labels'] = df.apply(lambda row: map_answers_to_labels(row[columns].tolist(), columns), axis=1)
 
 # Combine labels into a single text
 df['labels_text'] = df['labels'].apply(lambda labels: ' '.join(labels))
