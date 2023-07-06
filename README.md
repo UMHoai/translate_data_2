@@ -1,21 +1,16 @@
-import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
 
-# Tạo dataframe mẫu
-data = {
-    'question_id': [1, 2, 3],
-    'availabel_responses': [["abc", "bcd"], ["def", "efg"], ["hij", "ijk"]]
-}
-df = pd.DataFrame(data)
+# Tạo một instance của TF-IDF Vectorizer
+vectorizer = TfidfVectorizer()
 
-# Tạo dataframe mới để lưu từng available_response trên 1 row
-new_data = []
-for _, row in df.iterrows():
-    question_id = row['question_id']
-    available_responses = row['availabel_responses']
-    for response in available_responses:
-        new_data.append({'question_id': question_id, 'availabel_response': response})
+# Vectorize cột "text" trong dataframe
+text_vectorized = vectorizer.fit_transform(grouped_df['text'])
 
-new_df = pd.DataFrame(new_data)
+# Tạo dataframe mới từ ma trận vectorized
+df_vectorized = pd.DataFrame(text_vectorized.toarray(), columns=vectorizer.get_feature_names())
+
+# Kết hợp dataframe vectorized với dataframe gốc
+grouped_df_vectorized = pd.concat([grouped_df, df_vectorized], axis=1)
 
 # In kết quả
-print(new_df)
+print(grouped_df_vectorized)
