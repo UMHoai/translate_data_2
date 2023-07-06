@@ -1,16 +1,10 @@
-from sklearn.feature_extraction.text import TfidfVectorizer
+import pandas as pd
 
-# Tạo một instance của TF-IDF Vectorizer
-vectorizer = TfidfVectorizer()
+# Tạo DataFrame ban đầu
+df = pd.DataFrame({'text': ['row 1', 'row 2', 'row 3', 'row 4', 'row 5']})
 
-# Vectorize cột "text" trong dataframe
-text_vectorized = vectorizer.fit_transform(grouped_df['text'])
+# Thêm cột 'class' với giá trị từ 'class 1' đến 'class 5'
+df = df.assign(class=[f'class {i}' for i in range(1, 6)])
 
-# Tạo dataframe mới từ ma trận vectorized
-df_vectorized = pd.DataFrame(text_vectorized.toarray(), columns=vectorizer.get_feature_names())
-
-# Kết hợp dataframe vectorized với dataframe gốc
-grouped_df_vectorized = pd.concat([grouped_df, df_vectorized], axis=1)
-
-# In kết quả
-print(grouped_df_vectorized)
+# In DataFrame sau khi thêm cột 'class'
+print(df)
