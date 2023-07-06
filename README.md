@@ -1,10 +1,22 @@
 import pandas as pd
+from sklearn.feature_extraction.text import TfidfVectorizer
 
-# Tạo DataFrame ban đầu
-df = pd.DataFrame({'text': ['row 1', 'row 2', 'row 3', 'row 4', 'row 5']})
+# Định nghĩa dataframe ban đầu
+data = {
+    'text': ['Đây là câu thứ nhất', 'Đây là câu thứ hai', 'Đây là câu thứ ba'],
+    'class': ['A', 'B', 'A']
+}
+df = pd.DataFrame(data)
 
-# Thêm cột 'class' với giá trị từ 'class 1' đến 'class 5'
-df = df.assign(class=[f'class {i}' for i in range(1, 6)])
+# Tạo một vectorizer và fit với dữ liệu văn bản
+vectorizer = TfidfVectorizer()
+vectorizer.fit(df['text'])
 
-# In DataFrame sau khi thêm cột 'class'
+# Vector hóa các câu trong cột 'text' thành các vector
+vectors = vectorizer.transform(df['text'])
+
+# Tạo cột 'vectorize' trong dataframe và gán giá trị vector tương ứng
+df['vectorize'] = [vector.toarray() for vector in vectors]
+
+# In ra dataframe kết quả
 print(df)
