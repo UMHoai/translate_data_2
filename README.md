@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 from sklearn.metrics.pairwise import cosine_similarity
 
 # Định nghĩa dataframe vectorize_class
@@ -15,18 +16,26 @@ data_text = {
 }
 df_text = pd.DataFrame(data_text)
 
+# Tính độ tương tự giữa tất cả các text_vectorize và vectorize_class
+similarity_scores = cosine_similarity(df_text['text_vectorize'].tolist(), df_class['vectorize_class'].tolist())
+
+# Lấy top 3 scores và indices tương ứng
+top_scores = np.apply_along_axis(lambda row: np.sort(row)[-3:], 1, similarity_scores)
+top_indices = np.apply_along_axis(lambda row: np.argsort(row)[-3:], 1, similarity_scores)
+
 # Tạo dataframe mới để lưu đoạn text, top score và class tương ứng
 result_df = pd.DataFrame(columns=['text', 'top_score', 'class'])
 
-# Tính độ tương tự và lưu vào dataframe mới
-for index, row in df_text.iterrows():
-    text_vectorize = row['text_vectorize']
-    similarity_scores = cosine_similarity([text_vectorize], df_class['vectorize_class'])
-    top_scores = pd.Series(similarity_scores[0]).nlargest(3)
-    top_indices = top_scores.index
-    top_classes = df_class['class'].iloc[top_indices]
-    for i in range(len(top_scores)):
-        result_df.loc[index*3 + i] = [row['text'], top_scores.iloc[i], top_classes.iloc[i]]
+# Lặp qua mỗi text_vectorize và gán kết quả vào dataframe mới
+for i in range(len(df_text)):
+    text = df_text['text'][i]
+    scores = top_scores[i]
+    indices = top_indices[i]
+    classes = df_class['class'].iloc[indices]
+    result_df = result_df.append(pd.DataFrame({'text': [text] * 3, 'top_score': scores, 'class': classes}))
+
+# Đặt lại chỉ mục cho dataframe mới
+result_df.reset_index(drop=True, inplace=True)
 
 # In ra dataframe kết quả
 print(result_df)
