@@ -1,15 +1,3 @@
-import os
-import shutil
-
-source_folder = r"E:\demos\files\reports\\"
-destination_folder = r"E:\demos\files\account\\"
-
-# fetch all files
-for file_name in os.listdir(source_folder):
-    # construct full file path
-    source = source_folder + file_name
-    destination = destination_folder + file_name
-    # copy only files
-    if os.path.isfile(source):
-        shutil.copy(source, destination)
-        print('copied', file_name)
+# Đếm số lượng người có bệnh "a" trong cột số 1
+count_a = df[df['1'].str.contains('a')]['associated_member'].count()
+print("Số người có bệnh 'a' trong cột số 1:", count_a)
