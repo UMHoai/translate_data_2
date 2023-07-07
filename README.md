@@ -17,15 +17,15 @@ vectorizer.fit(df['text'])
 vectors = vectorizer.transform(df['text'])
 
 # Tính độ dài tối đa và trung bình của các vector hóa
-max_length = int(np.max([len(vector.toarray().flatten()) for vector in vectors]))
-avg_length = int(np.mean([len(vector.toarray().flatten()) for vector in vectors]))
+max_length = int(np.max([vector.getnnz() for vector in vectors]))
+avg_length = int(np.mean([vector.getnnz() for vector in vectors]))
 
 # Sử dụng độ dài tối đa hoặc trung bình để làm độ dài cố định cho vectorize
 desired_length = max_length
 # desired_length = avg_length
 
 # Chuyển đổi ma trận thành mảng một chiều với độ dài cố định
-vectors = [np.pad(vector.toarray().flatten(), (0, desired_length - len(vector)), 'constant')[:desired_length] for vector in vectors]
+vectors = [np.pad(vector.toarray().flatten(), (0, desired_length - vector.getnnz()), 'constant')[:desired_length] for vector in vectors]
 
 # Tạo cột 'vectorize' trong dataframe và gán giá trị vector tương ứng
 df['vectorize'] = vectors
