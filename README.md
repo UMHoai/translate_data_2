@@ -1,6 +1,5 @@
 import pandas as pd
 import numpy as np
-from sklearn.metrics.pairwise import cosine_similarity
 
 # Định nghĩa dataframe df_classes
 data_classes = {
@@ -18,12 +17,6 @@ data_parsed = {
 }
 df_parsed = pd.DataFrame(data_parsed)
 
-# Hàm tính điểm độ tương tự giữa hai vectorize
-def calculate_similarity(vector1, vector2):
-    vector1 = np.array(vector1).reshape(1, -1)
-    vector2 = np.array(vector2).reshape(1, -1)
-    return cosine_similarity(vector1, vector2)[0][0]
-
 # Tạo dataframe mới để lưu kết quả
 result_df = pd.DataFrame(columns=['parsed_text', 'class_name', 'similarity'])
 
@@ -38,7 +31,7 @@ for idx, row_parsed in df_parsed.iterrows():
         class_name = row_class['class_name']
         class_vectorize = row_class['vectorize']
         
-        similarity = calculate_similarity(parsed_vectorize, class_vectorize)
+        similarity = np.dot(parsed_vectorize, class_vectorize)
         similarity_scores.append((class_name, similarity))
     
     # Sắp xếp và lấy 3 điểm độ tương tự cao nhất
