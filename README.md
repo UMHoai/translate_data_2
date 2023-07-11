@@ -1,11 +1,7 @@
-temp_series = mcr_df['EmploymentStatus'].value_counts()
-labels = (np.array(temp_series.index))
-sizes = (np.array((temp_series / temp_series.sum())*100))
-
-trace = go.Pie(labels=labels, values=sizes)
-layout = go.Layout(
-    title='Employment Status distribution'
-)
-data = [trace]
-fig = go.Figure(data=data, layout=layout)
-py.iplot(fig, filename="employmentstatus")
+cnt_srs = mcr_df['Country'].value_counts().head(25)
+plt.figure(figsize=(8,12))
+sns.barplot(y=cnt_srs.index, x=cnt_srs.values, alpha=0.8)
+plt.xlabel('Number of respondents', fontsize=12)
+plt.ylabel('Country', fontsize=12)
+plt.title("Country wise number of respondents", fontsize=15)
+plt.show()
