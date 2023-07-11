@@ -7,3 +7,5 @@ plt.title("Country wise number of respondents", fontsize=15)
 plt.show()
 
 https://www.kaggle.com/code/sudalairajkumar/an-interactive-deep-dive-into-survey-results
+
+https://www.dataquest.io/blog/how-to-analyze-survey-data-python-beginner/
