@@ -1,11 +1,9 @@
-cnt_srs = mcr_df['Country'].value_counts().head(25)
-plt.figure(figsize=(8,12))
-sns.barplot(y=cnt_srs.index, x=cnt_srs.values, alpha=0.8)
-plt.xlabel('Number of respondents', fontsize=12)
-plt.ylabel('Country', fontsize=12)
-plt.title("Country wise number of respondents", fontsize=15)
-plt.show()
+Today:
+1. Research on how to analyze data based on existing data set.
+2. Analyze multiple choice and single choice questions.
+2.1. Process the data into a form that is easy to analyze.
+2.2. Ask some questions, query by parameter.
 
-https://www.kaggle.com/code/sudalairajkumar/an-interactive-deep-dive-into-survey-results
-
-https://www.dataquest.io/blog/how-to-analyze-survey-data-python-beginner/
+Tomorrow:
+1. Continue to research on how to analyze data based on existing data set.
+2. Continue to ask some questions for analysis.
