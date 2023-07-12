@@ -32,6 +32,9 @@ df = pd.DataFrame({
     '5': ['no', 'yes', 'no']
 })
 
+# Tạo từ điển để theo dõi các cột đã được tạo
+created_columns = {}
+
 # Tạo các cột mới cho câu hỏi đa lựa chọn
 multi_choice_columns = ['1', '3', '4', '5']
 
@@ -39,26 +42,30 @@ for column in multi_choice_columns:
     # Tách các đáp án bằng dấu chấm phẩy
     split_values = df[column].str.split(';')
     
-    # Tạo danh sách tên cột mới dựa trên giá trị đáp án
-    new_columns = []
-    
     # Duyệt qua từng giá trị đáp án
-    for row_values in split_values:
+    for row_idx, row_values in enumerate(split_values):
         for value in row_values:
             # Xóa khoảng trắng ở đầu và cuối giá trị
             value = value.strip()
             
             # Kiểm tra nếu giá trị đã có cột tương ứng
-            if value in df.columns:
+            if value in created_columns:
+                # Lấy tên cột tương ứng
+                new_column = created_columns[value]
+                
                 # Gán giá trị vào cột tương ứng
-                df[value] = value
+                df.loc[row_idx, new_column] = value
             else:
                 # Tạo cột mới và gán giá trị vào
-                new_column = f'{column}_answer_{len(new_columns)+1}'
-                df[new_column] = value
-                new_columns.append(new_column)
+                new_column = f'{column}_answer_{len(created_columns)+1}'
+                df[new_column] = ''
+                df.loc[row_idx, new_column] = value
+                
+                # Cập nhật từ điển với tên cột mới
+                created_columns[value] = new_column
 
 # Xóa các cột cũ
 df.drop(columns=multi_choice_columns, inplace=True)
 
 print(df)
+
