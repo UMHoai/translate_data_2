@@ -20,36 +20,28 @@ How many members feel that the improvement in each level proves that the use of 
 How many members need the help of others to help them understand ... ? (can be people with education level, age, complexity of specialized terminology instructions)
 
 
-# Tạo dataframe mới với cột câu trả lời là cột mới
-new_df = pd.DataFrame()
+import pandas as pd
 
-# Tạo một từ điển để lưu trữ cột câu trả lời
-answer_columns = {}
+# Tạo DataFrame
+df = pd.DataFrame({
+    'associable_member': [1, 2, 3],
+    '1': ['high blood pressure; liver disease', 'high blood pressure; liver disease; high cholesterol', 'liver disease', 'high blood pressure; high cholesterol'],
+    '2': ['Tình hình tài chính 1', 'Tình hình tài chính 2', 'Tình hình tài chính 3'],
+    '3': ['yes', 'no', 'no; yes'],
+    '4': ['often; often', 'never', 'sometime; often'],
+    '5': ['no', 'yes', 'no']
+})
 
-# Lặp qua từng cột câu hỏi trong dataframe gốc
+# Tách các câu trả lời đa lựa chọn thành các cột riêng biệt
+new_columns = []
 for column in df.columns:
-    # Kiểm tra nếu cột là cột "associable_member"
-    if column == 'associable_member':
-        new_df[column] = df[column]
-    else:
-        # Tách các câu trả lời thành danh sách
-        answers = df[column].str.split(';')
-        
-        # Lặp qua từng câu trả lời
-        for i, answer in enumerate(answers):
-            for ans in answer:
-                # Kiểm tra nếu câu trả lời đã xuất hiện trước đó
-                if ans.strip() in answer_columns:
-                    # Lấy tên cột đã tồn tại cho câu trả lời
-                    new_column = answer_columns[ans.strip()]
-                else:
-                    # Tạo tên cột mới cho câu trả lời
-                    new_column = f'{column}_Answer_{len(answer_columns)+1}'
-                    # Lưu trữ tên cột cho câu trả lời trong từ điển
-                    answer_columns[ans.strip()] = new_column
-                
-                new_df.loc[i, new_column] = ans.strip()
+    if column != 'associable_member':
+        new_column_values = df[column].str.split('; ').explode().reset_index(drop=True)
+        new_columns.extend([f"{column}_{i+1}" for i in range(len(new_column_values))])
+        df = pd.concat([df, pd.Series(new_column_values, name=f"{column}_{i+1}")], axis=1)
 
-# In dataframe mới
-print(new_df)
+# Xóa các cột cũ
+df = df.drop(columns=df.columns[1:-1])
+
+print(df)
 
