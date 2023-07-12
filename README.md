@@ -22,30 +22,35 @@ How many members need the help of others to help them understand ... ? (can be p
 
 import pandas as pd
 
-# Tạo DataFrame ví dụ
+# Tạo dataframe mẫu
 data = {
     'associable_member': ['A', 'B', 'C'],
-    '1': ['answer1', 'answer2;answer3', ''],
-    '2': ['answer4;answer5', '', 'answer6'],
-    '3': ['', 'answer7', 'answer8'],
-    '4': ['answer9', '', 'answer10'],
-    '5': ['', '', '']
+    '1': ['Option 1;Option 2', 'Option 1', ''],
+    '2': ['Option 3', '', 'Option 2'],
+    '3': ['', '', 'Option 1'],
+    '4': ['', 'Option 2', ''],
+    '5': ['Option 1', '', 'Option 3']
 }
-
 df = pd.DataFrame(data)
 
-# Tách câu trả lời trong DataFrame
-for column in df.columns[1:]:
-    df[column] = df[column].str.split(';')
+# Tạo dataframe mới với cột câu trả lời là cột mới
+new_df = pd.DataFrame()
 
-# Chuyển đổi các cột thành các cột mới
-new_columns = []
-for column in df.columns[1:]:
-    new_columns.extend(df[column].explode().unique())
+# Lặp qua từng cột câu hỏi trong dataframe gốc
+for column in df.columns:
+    # Kiểm tra nếu cột là cột "associable_member"
+    if column == 'associable_member':
+        new_df[column] = df[column]
+    else:
+        # Tách các câu trả lời thành danh sách
+        answers = df[column].str.split(';')
+        
+        # Tạo cột mới cho từng câu trả lời
+        for i, answer in enumerate(answers):
+            for ans in answer:
+                new_column = f'{column}_Answer_{i+1}'
+                new_df.loc[i, new_column] = ans.strip()
 
-df = df.reindex(columns=['associable_member'] + new_columns)
+# In dataframe mới
+print(new_df)
 
-# Đặt các câu không có câu trả lời thành NaN
-df = df.replace('', pd.NA)
-
-print(df)
