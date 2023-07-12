@@ -20,21 +20,11 @@ How many members feel that the improvement in each level proves that the use of 
 How many members need the help of others to help them understand ... ? (can be people with education level, age, complexity of specialized terminology instructions)
 
 
-import pandas as pd
-
-# Tạo dataframe mẫu
-data = {
-    'associable_member': ['A', 'B', 'C'],
-    '1': ['Option 1;Option 2', 'Option 1', ''],
-    '2': ['Option 3', '', 'Option 2'],
-    '3': ['', '', 'Option 1'],
-    '4': ['', 'Option 2', ''],
-    '5': ['Option 1', '', 'Option 3']
-}
-df = pd.DataFrame(data)
-
 # Tạo dataframe mới với cột câu trả lời là cột mới
 new_df = pd.DataFrame()
+
+# Tạo một từ điển để lưu trữ cột câu trả lời
+answer_columns = {}
 
 # Lặp qua từng cột câu hỏi trong dataframe gốc
 for column in df.columns:
@@ -45,10 +35,19 @@ for column in df.columns:
         # Tách các câu trả lời thành danh sách
         answers = df[column].str.split(';')
         
-        # Tạo cột mới cho từng câu trả lời
+        # Lặp qua từng câu trả lời
         for i, answer in enumerate(answers):
             for ans in answer:
-                new_column = f'{column}_Answer_{i+1}'
+                # Kiểm tra nếu câu trả lời đã xuất hiện trước đó
+                if ans.strip() in answer_columns:
+                    # Lấy tên cột đã tồn tại cho câu trả lời
+                    new_column = answer_columns[ans.strip()]
+                else:
+                    # Tạo tên cột mới cho câu trả lời
+                    new_column = f'{column}_Answer_{len(answer_columns)+1}'
+                    # Lưu trữ tên cột cho câu trả lời trong từ điển
+                    answer_columns[ans.strip()] = new_column
+                
                 new_df.loc[i, new_column] = ans.strip()
 
 # In dataframe mới
