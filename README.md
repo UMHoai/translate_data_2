@@ -22,26 +22,43 @@ How many members need the help of others to help them understand ... ? (can be p
 
 import pandas as pd
 
-# Tạo DataFrame
+# Tạo DataFrame ban đầu
 df = pd.DataFrame({
     'associable_member': [1, 2, 3],
-    '1': ['high blood pressure; liver disease', 'high blood pressure; liver disease; high cholesterol', 'liver disease', 'high blood pressure; high cholesterol'],
+    '1': ['high boold pressure; liver disease', 'high boold pressure; liver disease; high choresterol', 'liver disease'],
     '2': ['Tình hình tài chính 1', 'Tình hình tài chính 2', 'Tình hình tài chính 3'],
     '3': ['yes', 'no', 'no; yes'],
     '4': ['often; often', 'never', 'sometime; often'],
     '5': ['no', 'yes', 'no']
 })
 
-# Tách các câu trả lời đa lựa chọn thành các cột riêng biệt
-new_columns = []
-for column in df.columns:
-    if column != 'associable_member':
-        new_column_values = df[column].str.split('; ').explode().reset_index(drop=True)
-        new_columns.extend([f"{column}_{i+1}" for i in range(len(new_column_values))])
-        df = pd.concat([df, pd.Series(new_column_values, name=f"{column}_{i+1}")], axis=1)
+# Tạo các cột mới cho câu hỏi đa lựa chọn
+multi_choice_columns = ['1', '3', '4', '5']
+
+for column in multi_choice_columns:
+    # Tách các đáp án bằng dấu chấm phẩy
+    split_values = df[column].str.split(';')
+    
+    # Tạo danh sách tên cột mới dựa trên giá trị đáp án
+    new_columns = []
+    
+    # Duyệt qua từng giá trị đáp án
+    for row_values in split_values:
+        for value in row_values:
+            # Xóa khoảng trắng ở đầu và cuối giá trị
+            value = value.strip()
+            
+            # Kiểm tra nếu giá trị đã có cột tương ứng
+            if value in df.columns:
+                # Gán giá trị vào cột tương ứng
+                df[value] = value
+            else:
+                # Tạo cột mới và gán giá trị vào
+                new_column = f'{column}_answer_{len(new_columns)+1}'
+                df[new_column] = value
+                new_columns.append(new_column)
 
 # Xóa các cột cũ
-df = df.drop(columns=df.columns[1:-1])
+df.drop(columns=multi_choice_columns, inplace=True)
 
 print(df)
-
