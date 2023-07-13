@@ -84,6 +84,7 @@ print(df)
 
 ---------------
 import pandas as pd
+import numpy as np
 
 # Tạo DataFrame ban đầu
 df = pd.DataFrame({
@@ -97,26 +98,22 @@ df = pd.DataFrame({
 
 # Trường hợp 1: Xử lý câu hỏi single-choice
 single_choice_columns = ['2', '3', '5']
-no_answer_value = 'no-answers'
-
 for column in single_choice_columns:
-    df[column] = df[column].apply(lambda x: -1 if x and x != no_answer_value else 0)
-    df[column] = df[column].replace({0: pd.NA})
+    df[column] = np.where(df[column].str.contains('no-answers'), np.nan, -1)
+    df[column] = df[column].fillna(0)
 
 # Trường hợp 2: Xử lý câu hỏi multi-choice
 multi_choice_columns = ['1', '4']
-
+column_dictionary = {}
 for column in multi_choice_columns:
-    unique_values = set(';'.join(df[column].dropna()).split(';'))
-    unique_values.discard(no_answer_value)
-
+    unique_values = set('; '.join(df[column].tolist()).split('; '))
     for value in unique_values:
-        new_column = f"{column}_{value}"
-        df[new_column] = df[column].apply(lambda x: -1 if x and value in x else 0)
-        df[new_column] = df[new_column].replace({0: pd.NA})
+        if value not in column_dictionary:
+            column_dictionary[value] = f'{column}_value_{len(column_dictionary) + 1}'
+        df[column_dictionary[value]] = np.where(df[column].str.contains(value), -1, 0)
+        df[column_dictionary[value]] = df[column_dictionary[value]].replace(0, np.nan)
 
-    df.drop(column, axis=1, inplace=True)
-
+# In kết quả
 print(df)
 
 
