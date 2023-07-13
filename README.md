@@ -125,6 +125,6 @@ for index, row in df.iterrows():
 
 # Xóa cột multi-choice gốc
 df.drop(multi_choice_columns, axis=1, inplace=True)
-
+df = df.applymap(lambda x: int(x) if pd.notnull(x) else x)
 
 
