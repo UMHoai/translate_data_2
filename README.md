@@ -128,3 +128,23 @@ df.drop(multi_choice_columns, axis=1, inplace=True)
 df = df.applymap(lambda x: int(x) if pd.notnull(x) else x)
 
 
+for answer in df[column].explode().unique():
+        new_column_name = f'question_{question_number}_{answer}'
+        column_mapping[answer] = new_column_name
+
+# Xóa cột 'no-answers' khỏi danh sách giá trị duy nhất
+unique_values.discard(no_answer_value)
+
+# Tạo các cột unique với tên đã chỉnh sửa
+for value in unique_values:
+    df[column_mapping[value]] = 0
+
+# Gán giá trị cho các cột mới
+for index, row in df.iterrows():
+    for column in multi_choice_columns:
+        answers = row[column]
+        if isinstance(answers, list):
+            for answer in answers:
+                if answer in unique_values:
+                    df.at[index, column_mapping[answer]] = -1
+
