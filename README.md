@@ -99,51 +99,23 @@ df = pd.DataFrame({
 # Trường hợp 1: Xử lý câu hỏi single-choice
 single_choice_columns = ['2', '3', '5']
 for column in single_choice_columns:
-    df[column] = np.where(df[column].str.contains('no-answers'), np.nan, -1)
-    df[column] = df[column].fillna(0)
-
-# Trường hợp 2: Xử lý câu hỏi multi-choice
-multi_choice_columns = ['1', '4']
-column_dictionary = {}
-for column in multi_choice_columns:
-    unique_values = set('; '.join(df[column].tolist()).split('; '))
-    for value in unique_values:
-        if value not in column_dictionary:
-            column_dictionary[value] = f'{column}_value_{len(column_dictionary) + 1}'
-        df[column_dictionary[value]] = np.where(df[column].str.contains(value), -1, 0)
-        df[column_dictionary[value]] = df[column_dictionary[value]].replace(0, np.nan)
-
-# In kết quả
-print(df)
-
-_________________
-import pandas as pd
-import numpy as np
-
-# Tạo DataFrame ban đầu
-df = pd.DataFrame({
-    'member_id': [111, 112, 113],
-    '1': ['high blood pressure; liver disease', 'high blood pressure; liver disease; high cholesterol', 'no-answers'],
-    '2': ['i have a steady place to live', '', 'i have not a steady place to live'],
-    '3': ['yes', 'no-answers', 'no'],
-    '4': ['no-answers', 'never', 'sometimes; often'],
-    '5': ['no-answers', 'no', 'no-answers']
-})
-
-# Trường hợp 1: Xử lý câu hỏi single-choice
-single_choice_columns = ['2', '3', '5']
-for column in single_choice_columns:
     df[column] = np.where(df[column] == 'i have a steady place to live', 1, -1)
     df[column] = df[column].where(df[column] != '', 0)
     df[column] = df[column].where(df[column] != 'no-answers', np.nan)
 
 # Trường hợp 2: Xử lý câu hỏi multi-choice
 multi_choice_columns = ['1', '4']
+column_dict = {}
 for column in multi_choice_columns:
-    unique_values = set('; '.join(df[column].tolist()).split('; '))
-    for value in unique_values:
-        df[value] = np.where(df[column].str.contains(value), -1, 0)
-        df[value] = df[value].where(df[value] != 0, np.nan)
+    new_columns = {}
+    for index, row in df.iterrows():
+        values = row[column].split('; ')
+        for value in values:
+            if value not in column_dict:
+                column_dict[value] = f'{column}_{len(column_dict) + 1}'
+            new_columns[column_dict[value]] = -1
+    df = df.drop(column, axis=1)
+    df = pd.concat([df, pd.DataFrame([new_columns])], ignore_index=True)
 
 # In kết quả
 print(df)
