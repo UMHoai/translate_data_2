@@ -21,6 +21,9 @@ How many members need the help of others to help them understand ... ? (can be p
 
 https://tech.trivago.com/post/2019-09-23-howtoanalyzesurveymonkeydatainpython.html
 
+df[column] = np.where(df[column] == 'yes', -1, np.where(df[column] == 'no', 0, np.where(df[column] == no_answer_value, np.nan, df[column])))
+
+
 import pandas as pd
 import numpy as np
 
