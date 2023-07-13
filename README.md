@@ -24,100 +24,53 @@ https://tech.trivago.com/post/2019-09-23-howtoanalyzesurveymonkeydatainpython.ht
 import pandas as pd
 import numpy as np
 
-# Tạo DataFrame ban đầu
-df = pd.DataFrame({
-    'associable_member': [1, 2, 3],
-    '1': ['high boold pressure; liver disease', 'high boold pressure; liver disease; high choresterol', 'no-answers'],
-    '2': ['Tình hình tài chính 1', 'Tình hình tài chính 2', 'Tình hình tài chính 3'],
-    '3': ['yes', 'no', 'no; yes'],
-    '4': ['often; often', 'never', 'sometime; often'],
-    '5': ['no', 'yes', 'no-answers']
-})
-
-# Tạo từ điển để theo dõi các cột đã được tạo
-created_columns = {}
-
-# Tạo các cột mới cho câu hỏi đa lựa chọn
-multi_choice_columns = ['1', '3', '4', '5']
-
-for column in multi_choice_columns:
-    # Tách các đáp án bằng dấu chấm phẩy
-    split_values = df[column].str.split(';')
-    
-    # Duyệt qua từng giá trị đáp án
-    for row_idx, row_values in enumerate(split_values):
-        for value in row_values:
-            # Xóa khoảng trắng ở đầu và cuối giá trị
-            value = value.strip()
-            
-            # Kiểm tra nếu giá trị là "no-answers"
-            if value == 'no-answers':
-                # Kiểm tra nếu câu hỏi đã được tạo cột mới
-                if column in created_columns:
-                    # Lấy tên cột tương ứng
-                    new_column = created_columns[column]
-                    
-                    # Gán giá trị là 0 cho cột tương ứng
-                    df.loc[row_idx, new_column] = 0
-                break  # Thoát khỏi vòng lặp nếu giá trị là "no-answers"
-            
-            # Kiểm tra nếu giá trị đã có cột tương ứng
-            if value in created_columns:
-                # Lấy tên cột tương ứng
-                new_column = created_columns[value]
-                
-                # Gán giá trị vào cột tương ứng
-                df.loc[row_idx, new_column] = value
-            else:
-                # Tạo cột mới và gán giá trị vào
-                new_column = f'{column}_answer_{len(created_columns)+1}'
-                df[new_column] = np.nan
-                df.loc[row_idx, new_column] = value
-                
-                # Cập nhật từ điển với tên cột mới
-                created_columns[value] = new_column
-
-# Xóa các cột cũ
-df.drop(columns=multi_choice_columns, inplace=True)
-
-print(df)
-
----------------
-import pandas as pd
-import numpy as np
-
-# Tạo DataFrame ban đầu
 df = pd.DataFrame({
     'member_id': [111, 112, 113],
     '1': ['high blood pressure; liver disease', 'high blood pressure; liver disease; high cholesterol', 'no-answers'],
-    '2': ['i have a steady place to live', '', 'i have not a steady place to live'],
+    '2': ['i have a steady place to live', 'no-answers', 'i have not a steady place to live'],
     '3': ['yes', 'no-answers', 'no'],
-    '4': ['no-answers', 'never', 'sometimes; often'],
+    '4': ['no-answers', 'never', 'sometime; often'],
     '5': ['no-answers', 'no', 'no-answers']
 })
 
-# Trường hợp 1: Xử lý câu hỏi single-choice
+# Trường hợp 1: Single-choice
 single_choice_columns = ['2', '3', '5']
+no_answer_value = 'no-answers'
+
+# Xử lý câu hỏi single-choice
 for column in single_choice_columns:
-    df[column] = np.where(df[column] == 'i have a steady place to live', 1, -1)
-    df[column] = df[column].where(df[column] != '', 0)
-    df[column] = df[column].where(df[column] != 'no-answers', np.nan)
+    # Gán giá trị -1 cho câu trả lời được chọn
+    df[column] = np.where(df[column] == no_answer_value, np.nan, -1)
+    # Gán giá trị 0 cho câu trả lời không được chọn
+    df[column].fillna(0, inplace=True)
 
-# Trường hợp 2: Xử lý câu hỏi multi-choice
+# Trường hợp 2: Multi-choice
 multi_choice_columns = ['1', '4']
-column_dict = {}
-for column in multi_choice_columns:
-    new_columns = {}
-    for index, row in df.iterrows():
-        values = row[column].split('; ')
-        for value in values:
-            if value not in column_dict:
-                column_dict[value] = f'{column}_{len(column_dict) + 1}'
-            new_columns[column_dict[value]] = -1
-    df = df.drop(column, axis=1)
-    df = pd.concat([df, pd.DataFrame([new_columns])], ignore_index=True)
+unique_values = set()
 
-# In kết quả
-print(df)
+# Tách các đáp án và tạo các cột mới
+for column in multi_choice_columns:
+    df[column] = df[column].str.split(';')
+    unique_values.update(df[column].explode().unique())
+
+# Xóa cột 'no-answers' khỏi danh sách giá trị duy nhất
+unique_values.discard(no_answer_value)
+
+# Tạo các cột unique
+for value in unique_values:
+    df[value] = 0
+
+# Gán giá trị cho các cột mới
+for index, row in df.iterrows():
+    for column in multi_choice_columns:
+        answers = row[column]
+        if isinstance(answers, list):
+            for answer in answers:
+                if answer in unique_values:
+                    df.at[index, answer] = -1
+
+# Xóa các cột multi-choice gốc
+df.drop(multi_choice_columns, axis=1, inplace=True)
+
 
 
