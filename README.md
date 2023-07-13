@@ -22,15 +22,16 @@ How many members need the help of others to help them understand ... ? (can be p
 https://tech.trivago.com/post/2019-09-23-howtoanalyzesurveymonkeydatainpython.html
 
 import pandas as pd
+import numpy as np
 
 # Tạo DataFrame ban đầu
 df = pd.DataFrame({
     'associable_member': [1, 2, 3],
-    '1': ['high boold pressure; liver disease', 'high boold pressure; liver disease; high choresterol', 'liver disease'],
+    '1': ['high boold pressure; liver disease', 'high boold pressure; liver disease; high choresterol', 'no-answers'],
     '2': ['Tình hình tài chính 1', 'Tình hình tài chính 2', 'Tình hình tài chính 3'],
     '3': ['yes', 'no', 'no; yes'],
     '4': ['often; often', 'never', 'sometime; often'],
-    '5': ['no', 'yes', 'no']
+    '5': ['no', 'yes', 'no-answers']
 })
 
 # Tạo từ điển để theo dõi các cột đã được tạo
@@ -49,6 +50,17 @@ for column in multi_choice_columns:
             # Xóa khoảng trắng ở đầu và cuối giá trị
             value = value.strip()
             
+            # Kiểm tra nếu giá trị là "no-answers"
+            if value == 'no-answers':
+                # Kiểm tra nếu câu hỏi đã được tạo cột mới
+                if column in created_columns:
+                    # Lấy tên cột tương ứng
+                    new_column = created_columns[column]
+                    
+                    # Gán giá trị là 0 cho cột tương ứng
+                    df.loc[row_idx, new_column] = 0
+                break  # Thoát khỏi vòng lặp nếu giá trị là "no-answers"
+            
             # Kiểm tra nếu giá trị đã có cột tương ứng
             if value in created_columns:
                 # Lấy tên cột tương ứng
@@ -59,7 +71,7 @@ for column in multi_choice_columns:
             else:
                 # Tạo cột mới và gán giá trị vào
                 new_column = f'{column}_answer_{len(created_columns)+1}'
-                df[new_column] = ''
+                df[new_column] = np.nan
                 df.loc[row_idx, new_column] = value
                 
                 # Cập nhật từ điển với tên cột mới
@@ -67,6 +79,8 @@ for column in multi_choice_columns:
 
 # Xóa các cột cũ
 df.drop(columns=multi_choice_columns, inplace=True)
+
+print(df)
 
 print(df)
 
