@@ -148,3 +148,7 @@ for index, row in df.iterrows():
                 if answer in unique_values:
                     df.at[index, column_mapping[answer]] = -1
 
+# Sắp xếp lại các cột theo thứ tự câu hỏi
+sorted_columns = ['member_id'] + single_choice_columns + sorted(df.columns[1:], key=lambda x: int(x.split('_')[1]))
+
+df = df[sorted_columns]
