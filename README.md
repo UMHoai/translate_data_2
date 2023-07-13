@@ -155,3 +155,14 @@ for index, row in df.iterrows():
 sorted_columns = ['member_id'] + single_choice_columns + sorted(df.columns[1:], key=lambda x: int(x.split('_')[1]))
 
 df = df[sorted_columns]
+
+
+
+# Tạo cột 'NA' đếm số cột có giá trị NaN
+df['NA'] = df.isna().sum(axis=1)
+
+# Tạo cột 'Negativity' cộng lại các số âm của mỗi member
+df['Negativity'] = df.select_dtypes(include=[np.number]).apply(lambda row: row[row < 0].sum(), axis=1)
+
+# Tạo cột 'Positivity' cộng lại các số dương của mỗi member
+df['Positivity'] = df.select_dtypes(include=[np.number]).apply(lambda row: row[row > 0].sum(), axis=1)
