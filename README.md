@@ -82,5 +82,35 @@ df.drop(columns=multi_choice_columns, inplace=True)
 
 print(df)
 
-print(df)
+---------------
+import pandas as pd
+
+# Tạo DataFrame ban đầu
+df = pd.DataFrame({
+    'member_id': [111, 112, 113],
+    '1': ['high boold pressure; liver disease', 'high boold pressure; liver disease; high choresterol', 'no-answers'],
+    '2': ['i have a steady place to live', '', 'i have not a steady place to live'],
+    '3': ['yes', 'no-answers', 'no'],
+    '4': ['no-answers', 'never', 'sometime; often'],
+    '5': ['no-answers', 'no', 'no-answers']
+})
+
+# Tạo một bản sao của DataFrame ban đầu để xử lý
+processed_df = df.copy()
+
+# Xử lý single-choice questions
+single_choice_columns = ['2', '3', '5']
+processed_df[single_choice_columns] = processed_df[single_choice_columns].applymap(lambda x: -1 if x else 0)
+processed_df.replace('no-answers', float('nan'), inplace=True)
+
+# Xử lý multi-choice questions
+multi_choice_columns = ['1', '4']
+for column in multi_choice_columns:
+    unique_values = set('; '.join(processed_df[column].dropna()).split('; '))
+    for value in unique_values:
+        processed_df[f'{column}_{value}'] = processed_df[column].apply(lambda x: -1 if value in str(x) else (float('nan') if x == 'no-answers' else 0))
+
+# Hiển thị kết quả
+print(processed_df)
+
 
