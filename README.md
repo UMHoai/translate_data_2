@@ -19,6 +19,7 @@ How many members feel that the improvement in each level proves that the use of 
 
 How many members need the help of others to help them understand ... ? (can be people with education level, age, complexity of specialized terminology instructions)
 
+https://tech.trivago.com/post/2019-09-23-howtoanalyzesurveymonkeydatainpython.html
 
 import pandas as pd
 
