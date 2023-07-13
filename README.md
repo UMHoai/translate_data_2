@@ -88,29 +88,36 @@ import pandas as pd
 # Tạo DataFrame ban đầu
 df = pd.DataFrame({
     'member_id': [111, 112, 113],
-    '1': ['high boold pressure; liver disease', 'high boold pressure; liver disease; high choresterol', 'no-answers'],
+    '1': ['high blood pressure; liver disease', 'high blood pressure; liver disease; high cholesterol', 'no-answers'],
     '2': ['i have a steady place to live', '', 'i have not a steady place to live'],
     '3': ['yes', 'no-answers', 'no'],
-    '4': ['no-answers', 'never', 'sometime; often'],
+    '4': ['no-answers', 'never', 'sometimes; often'],
     '5': ['no-answers', 'no', 'no-answers']
 })
 
-# Tạo một bản sao của DataFrame ban đầu để xử lý
-processed_df = df.copy()
-
-# Xử lý single-choice questions
+# Trường hợp 1: Xử lý câu hỏi single-choice
 single_choice_columns = ['2', '3', '5']
-processed_df[single_choice_columns] = processed_df[single_choice_columns].applymap(lambda x: -1 if x else 0)
-processed_df.replace('no-answers', float('nan'), inplace=True)
+no_answer_value = 'no-answers'
 
-# Xử lý multi-choice questions
+for column in single_choice_columns:
+    df[column] = df[column].apply(lambda x: -1 if x and x != no_answer_value else 0)
+    df[column] = df[column].replace({0: pd.NA})
+
+# Trường hợp 2: Xử lý câu hỏi multi-choice
 multi_choice_columns = ['1', '4']
-for column in multi_choice_columns:
-    unique_values = set('; '.join(processed_df[column].dropna()).split('; '))
-    for value in unique_values:
-        processed_df[f'{column}_{value}'] = processed_df[column].apply(lambda x: -1 if value in str(x) else (float('nan') if x == 'no-answers' else 0))
 
-# Hiển thị kết quả
-print(processed_df)
+for column in multi_choice_columns:
+    unique_values = set(';'.join(df[column].dropna()).split(';'))
+    unique_values.discard(no_answer_value)
+
+    for value in unique_values:
+        new_column = f"{column}_{value}"
+        df[new_column] = df[column].apply(lambda x: -1 if x and value in x else 0)
+        df[new_column] = df[new_column].replace({0: pd.NA})
+
+    df.drop(column, axis=1, inplace=True)
+
+print(df)
+
 
 
