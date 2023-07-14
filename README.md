@@ -21,9 +21,16 @@ How many members need the help of others to help them understand ... ? (can be p
 
 https://tech.trivago.com/post/2019-09-23-howtoanalyzesurveymonkeydatainpython.html
 
+new_columns = ['member_id', 'NA', 'Negativity', 'Positivity']
+new_df = pd.DataFrame(columns=new_columns)
 
-result_df = pd.DataFrame()
-result_df['member_id'] = df['member_id']
-result_df['NA'] = df.isna().sum(axis=1)
-result_df['Negativity'] = df.select_dtypes(include=[np.number]).apply(lambda row: row[row < 0].sum(), axis=1)
-result_df['Positivity'] = df.select_dtypes(include=[np.number]).drop('member_id', axis=1).apply(lambda row: row[row > 0].sum(), axis=1)
+# Tính toán giá trị 'NA', 'Negativity' và 'Positivity' cho mỗi member
+for index, row in df.iterrows():
+    member_id = row['member_id']
+    na_count = row.isna().sum() - 1  # Trừ đi cột 'member_id'
+    negativity = row[row < 0].sum()
+    positivity = row[row > 0].sum()
+    
+    # Thêm hàng mới vào DataFrame mới
+    new_row = pd.DataFrame([[member_id, na_count, negativity, positivity]], columns=new_columns)
+    new_df = new_df.append(new_row, ignore_index=True)
