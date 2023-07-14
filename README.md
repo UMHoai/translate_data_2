@@ -21,16 +21,30 @@ How many members need the help of others to help them understand ... ? (can be p
 
 https://tech.trivago.com/post/2019-09-23-howtoanalyzesurveymonkeydatainpython.html
 
-new_columns = ['member_id', 'NA', 'Negativity', 'Positivity']
-new_df = pd.DataFrame(columns=new_columns)
+# Số members trả lời đầy đủ (có đầy đủ 5 câu trả lời)
+full_responses_count = df[df.notna().all(axis=1)].shape[0]
 
-# Tính toán giá trị 'NA', 'Negativity' và 'Positivity' cho mỗi member
-for index, row in df.iterrows():
-    member_id = row['member_id']
-    na_count = row.isna().sum() - 1  # Trừ đi cột 'member_id'
-    negativity = row[row < 0].sum()
-    positivity = row[row > 0].sum()
-    
-    # Thêm hàng mới vào DataFrame mới
-    new_row = pd.DataFrame([[member_id, na_count, negativity, positivity]], columns=new_columns)
-    new_df = new_df.append(new_row, ignore_index=True)
+# Số member trả lời 5, 4, 3, 2, 1 câu hỏi
+answers_counts = df.notna().sum(axis=1).value_counts().sort_index()
+
+# Min negativity, Max negativity
+min_negativity = df[single_choice_columns + new_columns].sum(axis=1).min()
+max_negativity = df[single_choice_columns + new_columns].sum(axis=1).max()
+
+# Min positivity, Max positivity
+min_positivity = df[single_choice_columns + new_columns].sum(axis=1).where(df[single_choice_columns + new_columns] > 0).min()
+max_positivity = df[single_choice_columns + new_columns].sum(axis=1).where(df[single_choice_columns + new_columns] > 0).max()
+
+# Thống kê số member theo từng điểm negativity
+negativity_counts = df[single_choice_columns + new_columns].sum(axis=1).value_counts().sort_index()
+
+# Hiển thị kết quả
+print("Số members trả lời đầy đủ:", full_responses_count)
+print("Số member trả lời 5, 4, 3, 2, 1 câu hỏi:")
+print(answers_counts)
+print("Min negativity:", min_negativity)
+print("Max negativity:", max_negativity)
+print("Min positivity:", min_positivity)
+print("Max positivity:", max_positivity)
+print("Thống kê số member theo từng điểm negativity:")
+print(negativity_counts)
